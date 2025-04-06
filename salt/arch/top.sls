@@ -94,6 +94,7 @@ arch:
     - ipmitool
     - icedtea-web
     - buffalo
+    - platformio
 
     # General tools configuration
     - gpg

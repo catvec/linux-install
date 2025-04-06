@@ -11,7 +11,7 @@ die () { # (msg)
 
 # Options
 ENV=""
-while getopts "he:" opt; do
+while getopts "he:n:d:" opt; do
     case "$opt" in
         h)
             cat <<EOF
@@ -24,12 +24,9 @@ USAGE
 OPTIONS
 
     -h        Show this help text and exit
+    -n NAME   Name of state (alphanumeric or dashes, cannot start or end with dash)
+    -d DESC   Description of what package will be installed (put as comment at top of state dir), madlibs in the sentence "Installs DESC"
     -e ENV    Name of pillar ENV in which to create additional pillar file
-
-ARGUMENTS
-
-    NAME    Name of state (alphanumeric or dashes, cannot start or end with dash)
-    DESC    Description of what package will be installed (put as comment at top of state dir)
 
 BEHAVIOR
 
@@ -38,6 +35,8 @@ BEHAVIOR
 EOF
             exit 0
             ;;
+        n) NAME="$OPTARG" ;;
+        d) DESC="$OPTARG" ;;
         e) ENV="$OPTARG" ;;
         '?') die "Unknown option" ;;
     esac
@@ -45,9 +44,6 @@ done
 
 shift $((OPTIND-1))
 
-# Arguments
-NAME="$1"
-DESC="$2"
 if [[ -z "$NAME" ]]; then
     die "NAME argument must be provided"
 fi
@@ -104,3 +100,7 @@ EOF
         echo "Not writing scaffold pillar file to '$pillar_f' because it already exists"
     fi
 done
+
+if [[ -n "$ENV" ]]; then
+    echo "Don't forget to add this new package '$jinja_name' to your '$ENV' salt top file!"
+fi

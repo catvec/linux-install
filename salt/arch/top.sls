@@ -174,3 +174,4 @@ arch:
     - korganizer
     - evolution
     - strawberry-music-organizer
+    - gpodder

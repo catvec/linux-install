@@ -1,0 +1,2 @@
+gpodder:
+  multipkgs: []

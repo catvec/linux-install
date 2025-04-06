@@ -1,0 +1,3 @@
+gpodder:
+  multipkgs:
+    - pkg: gpodder

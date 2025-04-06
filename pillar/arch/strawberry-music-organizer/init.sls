@@ -1,3 +1,8 @@
 strawberry_music_organizer:
   multipkgs:
-    - pkg: strawberry
+    - pkg:
+        - strawberry
+        - gstreamer
+        - gst-libav
+        - gst-plugins-base
+        - gst-plugins-good

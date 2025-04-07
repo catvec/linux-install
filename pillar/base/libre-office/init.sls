@@ -1,2 +1,2 @@
 libre_office:
-  pkg: libreoffice
+  multipkgs: []

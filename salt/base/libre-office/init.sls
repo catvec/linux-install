@@ -1,4 +1,5 @@
 # Installs Libre Office
 
-{{ pillar.libre_office.pkg }}:
-  pkg.installed
+libre_office_pkgs:
+  multipkg.installed:
+    - pkgs: {{ pillar.libre_office.multipkgs }}

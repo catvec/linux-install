@@ -176,3 +176,4 @@ arch:
     - evolution
     - strawberry-music-organizer
     - gpodder
+    - libre-office

@@ -124,6 +124,7 @@ arch:
     - downgrade
     - xxd
     - kubectx
+    - nx
 
     # Applications configuration
     #- links

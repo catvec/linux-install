@@ -173,7 +173,7 @@ base:
     - signal
     - dolphin-emu
     - vscode
-    - raspberry-pi-imager
+    - rpi-imager
     - gotify-client
     - qmk
 

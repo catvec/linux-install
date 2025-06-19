@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-source {{ pillar.salt_virtual_environment.venv_dir }}/bin/activate
-{{ pillar.salt_virtual_environment.venv_dir }}/bin/salt-call $@

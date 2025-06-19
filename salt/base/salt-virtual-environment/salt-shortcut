@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+source {{ pillar.salt_virtual_environment.venv_bin_dir }}/activate
+{{ pillar.salt_virtual_environment.venv_bin_dir }}/{{ target_file }} $@

@@ -5,6 +5,7 @@ i3:
 
     # KDE plasma
     - plasma-meta
+    - plasma-x11-session
 
     # Icon font
     - noto-fonts-emoji

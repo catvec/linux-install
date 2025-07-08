@@ -95,6 +95,11 @@ arch:
     - icedtea-web
     - buffalo
     - platformio
+    - rsync
+    - downgrade
+    - xxd
+    - kubectx
+    - nx
 
     # General tools configuration
     - gpg
@@ -120,11 +125,6 @@ arch:
     - scrot
     - i3
     - gnome-keyring
-    - rsync
-    - downgrade
-    - xxd
-    - kubectx
-    - nx
 
     # Applications configuration
     #- links

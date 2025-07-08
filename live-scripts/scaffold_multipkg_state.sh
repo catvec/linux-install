@@ -19,7 +19,7 @@ scaffold_multipkg_state.sh - Create files and directories to install a package v
 
 USAGE
 
-    scaffold_multipkg_state.sh [-h] [-e ENV] NAME
+    scaffold_multipkg_state.sh [-h] [-n NAME] [-d DESC] [-e ENV]
 
 OPTIONS
 

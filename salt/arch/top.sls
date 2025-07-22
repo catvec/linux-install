@@ -101,6 +101,7 @@ arch:
     - kubectx
     - nx
     - gemini-cli
+    - claude-code
 
     # General tools configuration
     - gpg

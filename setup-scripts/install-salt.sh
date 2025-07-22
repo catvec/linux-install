@@ -1,13 +1,60 @@
 #!/usr/bin/env bash
 set -xeuo pipefail
 readonly PROG_DIR=$(dirname $(realpath "$0"))
-readonly ONEDIR_DOWNLOAD_URL="https://packages.broadcom.com/artifactory/saltproject-generic/onedir/3007.1/salt-3007.1-onedir-linux-x86_64.tar.xz"
-readonly ONEDIR_DOWNLOAD_SHA="a8e48e5b8ef41574ea7bfd3f532e1b81f6805edb5ff3a7c77b364641a00a56c9"
+readonly ONEDIR_DOWNLOAD_URL="https://packages.broadcom.com/artifactory/saltproject-generic/onedir/3006.8/salt-3006.8-onedir-linux-x86_64.tar.xz"
+readonly ONEDIR_DOWNLOAD_SHA="e7ec81a2ff6b28d4ddcc150b850cb394370174c479c83a2825cdb5018c5455bd"
 readonly ONEDIR_PARENT_DIR="/opt"
 readonly ONEDIR_DIR="${ONEDIR_PARENT_DIR}/salt"
 readonly ONEDIR_DOWNLOAD_FILE="${PROG_DIR}/../salt-onedir.tar.xz"
 
 readonly LINK_DEST_DIR="/usr/local/bin"
+
+# Options
+OPT_FORCE=""
+while getopts "hf" opt; do
+    case "$opt" in
+        h)
+            cat <<EOF
+install-salt.sh - Install the Salt onedir installation
+
+USAGE
+
+    install-salt.sh [-h] [-f]
+
+OPTIONS
+
+    -h    Show this help text and exit
+    -f    Replace the existing installation if it exists
+
+EOF
+        exit 0
+        ;;
+        f) OPT_FORCE="y" ;;
+        '?')
+            echo "Error: Unknown options" >&2
+            exit 1
+            ;;
+    esac
+done
+
+# Clean up existing install if re-installing
+if [[ -d "$ONEDIR_DIR" ]]; then
+    echo "Re-installing"
+
+    # Remove links
+    for src_file in "${ONEDIR_DIR}"/salt*; do
+        file_basename="$(basename $src_file)"
+        dest_file="${LINK_DEST_DIR}/${file_basename}"
+
+        if [[ -f "$dest_file" ]]; then
+            rm "$dest_file"
+            echo "Cleaned up link '$dest_file' (Linked to '$src_file')"
+        fi
+    done
+
+    # Clean up onedir dir
+    rm -rf "$ONEDIR_DIR"
+fi
 
 # Install files
 if ! [[ -d "$ONEDIR_DIR" ]]; then

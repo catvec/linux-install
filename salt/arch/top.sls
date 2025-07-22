@@ -100,6 +100,7 @@ arch:
     - xxd
     - kubectx
     - nx
+    - gemini-cli
 
     # General tools configuration
     - gpg

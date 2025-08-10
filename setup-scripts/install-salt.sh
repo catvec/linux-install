@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 set -xeuo pipefail
 readonly PROG_DIR=$(dirname $(realpath "$0"))
-readonly ONEDIR_DOWNLOAD_URL="https://packages.broadcom.com/artifactory/saltproject-generic/onedir/3006.8/salt-3006.8-onedir-linux-x86_64.tar.xz"
-readonly ONEDIR_DOWNLOAD_SHA="e7ec81a2ff6b28d4ddcc150b850cb394370174c479c83a2825cdb5018c5455bd"
+
+readonly SALT_VERSION="3007.6"
+readonly ONEDIR_DOWNLOAD_URL="https://packages.broadcom.com/artifactory/saltproject-generic/onedir/${SALT_VERSION}/salt-${SALT_VERSION}-onedir-linux-x86_64.tar.xz"
+readonly ONEDIR_DOWNLOAD_SHA="5d65442973b3db93b882dabb20d8c379950c68bd67c0aec5db8072d63eeaf5c7"
 readonly ONEDIR_PARENT_DIR="/opt"
 readonly ONEDIR_DIR="${ONEDIR_PARENT_DIR}/salt"
 readonly ONEDIR_DOWNLOAD_FILE="${PROG_DIR}/../salt-onedir.tar.xz"

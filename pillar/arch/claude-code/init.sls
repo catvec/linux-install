@@ -1,3 +1,3 @@
 claude_code:
-  multipkgs:
-    - aurpkg: claude-code
+  pkgs:
+    - "@anthropic-ai/claude-code"

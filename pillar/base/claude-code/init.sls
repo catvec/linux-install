@@ -1,2 +1,2 @@
 claude_code:
-  multipkgs: []
+  pkgs: []

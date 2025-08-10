@@ -63,6 +63,7 @@ arch:
     - go
     - flutter
     - terraform
+    - tflint
     #- software-defined-radio
     - digitalocean-cli
     - godot

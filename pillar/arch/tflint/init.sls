@@ -1,0 +1,3 @@
+tflint:
+  multipkgs:
+    - pkg: tflint

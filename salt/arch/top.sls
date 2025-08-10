@@ -64,6 +64,7 @@ arch:
     - flutter
     - terraform
     - tflint
+    - infracost
     #- software-defined-radio
     - digitalocean-cli
     - godot

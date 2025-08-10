@@ -1,0 +1,3 @@
+infracost:
+  multipkgs:
+    - aurpkg: infracost

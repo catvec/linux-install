@@ -1,0 +1,3 @@
+vagrant:
+  multipkgs:
+    - aurpkg: vagrant

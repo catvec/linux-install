@@ -102,6 +102,7 @@ arch:
     - nx
     - gemini-cli
     - claude-code
+    - vagrant
 
     # General tools configuration
     - gpg

@@ -120,6 +120,7 @@ arch:
     - qt
     - pkgfile
     - ncdu
+    - modeprobed-db
     
     # User interface configuration
     - vulkan

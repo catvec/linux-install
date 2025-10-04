@@ -107,6 +107,7 @@ arch:
     - claude-code
     - qwen-code
     - vagrant
+    - mkcert
     - libfreenect
 
     # General tools configuration

@@ -1,0 +1,3 @@
+libfreenect:
+  multipkgs:
+    - aurpkg: libfreenect

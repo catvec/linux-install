@@ -106,6 +106,7 @@ arch:
     - gemini-cli
     - claude-code
     - vagrant
+    - libfreenect
 
     # General tools configuration
     - gpg

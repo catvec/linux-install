@@ -1,0 +1,2 @@
+libfreenect:
+  multipkgs: []

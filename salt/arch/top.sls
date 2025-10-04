@@ -119,6 +119,7 @@ arch:
     - spell-check
     - qt
     - pkgfile
+    - ncdu
     
     # User interface configuration
     - vulkan

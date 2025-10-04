@@ -31,6 +31,7 @@ arch:
     - display-manager
     - wireguard
     - fingerprint-reader
+    - printers
     
     # User configuration
     - users

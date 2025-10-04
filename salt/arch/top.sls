@@ -105,6 +105,7 @@ arch:
     - nx
     - gemini-cli
     - claude-code
+    - qwen-code
     - vagrant
     - libfreenect
 

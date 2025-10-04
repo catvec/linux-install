@@ -49,7 +49,7 @@ partitions:
   # Swap partition
   swap:
     # Name of device
-    name: /dev/nvme0n1p4
+    name: /dev/nvme0n1p5
 
     # Partition UUID
     uuid: 0667db83-8185-4024-8893-f6520a86bd8d

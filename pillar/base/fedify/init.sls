@@ -1,0 +1,2 @@
+fedify:
+  multipkgs: []

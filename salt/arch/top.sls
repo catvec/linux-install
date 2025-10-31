@@ -109,6 +109,7 @@ arch:
     - vagrant
     - mkcert
     - libfreenect
+    - fedify
 
     # General tools configuration
     - gpg

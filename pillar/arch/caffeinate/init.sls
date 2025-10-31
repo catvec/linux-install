@@ -1,0 +1,3 @@
+caffeinate:
+  multipkgs:
+    - aurpkg: caffeinate

@@ -1,0 +1,2 @@
+caffeinate:
+  multipkgs: []

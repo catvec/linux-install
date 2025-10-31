@@ -109,6 +109,7 @@ arch:
     - vagrant
     - mkcert
     - libfreenect
+    - caffeinate
     - fedify
 
     # General tools configuration

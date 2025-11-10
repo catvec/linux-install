@@ -194,3 +194,4 @@ arch:
     - strawberry-music-organizer
     - gpodder
     - libre-office
+    - vdirsyncer

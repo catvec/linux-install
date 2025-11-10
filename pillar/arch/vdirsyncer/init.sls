@@ -1,0 +1,3 @@
+vdirsyncer:
+  multipkgs:
+    - pkg: vdirsyncer

@@ -1,0 +1,3 @@
+geoclue:
+  multipkgs:
+    - pkg: geoclue

@@ -142,6 +142,7 @@ arch:
     # Applications configuration
     #- links
     - firefox
+    - geoclue # (Firefox geolocation)
     - avahi
     - librewolf
     - chrome

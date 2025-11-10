@@ -142,6 +142,7 @@ arch:
     # Applications configuration
     #- links
     - firefox
+    - avahi
     - librewolf
     - chrome
     - syncthing

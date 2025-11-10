@@ -1,0 +1,3 @@
+avahi:
+  multipkgs:
+    - avahi

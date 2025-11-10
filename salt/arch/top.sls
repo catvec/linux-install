@@ -111,6 +111,7 @@ arch:
     - libfreenect
     - caffeinate
     - fedify
+    - deno
 
     # General tools configuration
     - gpg

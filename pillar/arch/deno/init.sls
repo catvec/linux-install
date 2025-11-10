@@ -1,0 +1,3 @@
+deno:
+  multipkgs:
+    - pkg: deno

@@ -195,3 +195,4 @@ arch:
     - gpodder
     - libre-office
     - vdirsyncer
+    - ollama

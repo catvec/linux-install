@@ -112,6 +112,7 @@ arch:
     - caffeinate
     - fedify
     - deno
+    - openai-codex
 
     # General tools configuration
     - gpg

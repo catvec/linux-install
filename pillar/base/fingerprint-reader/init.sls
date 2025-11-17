@@ -6,3 +6,6 @@ fingerprint_reader:
   pam_configuration_files:
     - system-local-login
     - sddm
+
+  # Fingerprint service
+  svc: fprintd

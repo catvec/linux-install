@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+# Runs any program with env vars to connect to ollama
+set -eou pipefail
+readonly DEFAULT_OLLAMA_URI="${OLLAMA_ENDPOINT:-http://localhost:11434}"
+
+shortcut=""
+ollama_uri="${DEFAULT_OLLAMA_URI}"
+while getopts "m:s:u:h" opt; do
+    case "$opt" in
+        m) export OLLAMA_MODEL="$OPTARG" ;;
+        u) ollama_uri="$OPTARG" ;;
+        h)
+            cat <<EOF
+ollama-env [-m MODEL] [-s SHORT] [-u URI] EXEC...
+
+OPTIONS
+
+  -m MODEL    The name of the Ollama model to use
+  -u URI      The base URI of the Ollama server (defaults to '${DEFAULT_OLLAMA_URI}')
+  -s SHORT    Shortcut which runs program with preset model, see SHORTCUTS below. If EXEC... is still provided then appended to end of shortcut program.
+  EXEC...     Program to run
+
+SHORTCUTS
+
+  qwen    Runs the 'qwen' program with the 'qwen3-coder:latest' model (-m).
+
+DESCRIPTION
+
+  Runs "EXEC..." with env vars to indicate local Ollama should be used
+
+EOF
+            exit 0
+            ;;
+        s) shortcut="$OPTARG" ;;
+        '?') exit 1 ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+exec_str_base=""
+if [[ -n "$shortcut" ]]; then
+    case "$shortcut" in
+        qwen)
+            exec_str_base="qwen"
+            export OLLAMA_MODEL="qwen3-coder:latest"
+            ;;
+        *)
+            echo "Error: Unknown shortcut '$shortcut'" >&2
+            exit 1
+            ;;
+   esac
+fi
+
+export OLLAMA_ENDPOINT="$ollama_uri"
+
+cat <<EOF
+Endpoint: '${OLLAMA_ENDPOINT}'
+Model   : '${OLLAMA_MODEL}'
+EOF
+
+set -x
+exec "${exec_str_base}$@"

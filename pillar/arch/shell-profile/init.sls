@@ -42,3 +42,4 @@ shell_profile:
     #- start_wayland
     - doom_emacs
     - cargo_path
+    - docker_compose_alias

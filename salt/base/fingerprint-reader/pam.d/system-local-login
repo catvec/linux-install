@@ -1,5 +1,13 @@
 #%PAM-1.0
 
+# CVE-2024-37408
+# https://nvd.nist.gov/vuln/detail/cve-2024-37408
+#
+# This setting is a security breach for su and sudo as it allows background processes to obtain
+# permissions without prompting the user.
+auth       [success=1 default=ignore]  pam_succeed_if.so    service in sudo:su:su-l tty in :unknown
+# End CVE
+
 auth      optional pam_fprintd.so
 auth      include    system-login
 account   include    system-login

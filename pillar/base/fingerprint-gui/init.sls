@@ -1,0 +1,2 @@
+fingerprint_gui:
+  multipkgs: []

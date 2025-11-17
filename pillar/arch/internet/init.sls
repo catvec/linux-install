@@ -8,7 +8,10 @@ internet:
     - networkmanager-strongswan
     - strongswan
 
-  svc: NetworkManager.service
+  svcs:
+    network_manager: NetworkManager.service
+    systemd_resolved: systemd-resolved
+
 
   wifi_interface: wlp166s0
   connection_profiles_dir: /etc/NetworkManager/system-connections

@@ -1,6 +1,9 @@
 #%PAM-1.0
 
+# Ask for password first, enter empty password to drop into fingerprint reader
+auth      sufficient pam_unix.so try_first_pass likeauth nullok
 auth      sufficient pam_fprintd.so
+
 auth      include    system-login
 account   include    system-login
 password  include    system-login

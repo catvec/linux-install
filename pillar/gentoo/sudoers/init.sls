@@ -1,2 +1,3 @@
 sudoers:
-  pkg: app-admin/sudo
+  multipkgs:
+    - app-admin/sudo

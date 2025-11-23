@@ -1,6 +1,11 @@
 sudoers:
-  # File to configure sudoers
-  sudo_no_password_file: /etc/sudoers.d/sudo-no-password
+  multipkgs: []
+
+  # Directory to configure sudoers
+  sudoers_d_path: /etc/sudoers.d
 
   # Group which is given sudo permissions
   sudo_group: wheel
+
+  # If a password should be required when using sudo
+  password_required: false

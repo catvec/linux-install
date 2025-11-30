@@ -46,7 +46,6 @@ def get_managed_file_content(
     template: Optional[str] = None,
     context: Optional[dict] = None,
     defaults: Optional[dict] = None,
-    saltenv: str = "base",
     **kwargs
 ) -> str:
     """Get file contents from a source, with optional template rendering.
@@ -58,7 +57,6 @@ def get_managed_file_content(
         template: Template engine to use (e.g., 'jinja', 'mako'). None for no templating.
         context: Dictionary of variables to pass to the template
         defaults: Dictionary of default values for template variables
-        saltenv: Salt environment to use when fetching files
         **kwargs: Additional arguments
 
     Returns:
@@ -81,35 +79,20 @@ def get_managed_file_content(
         if template:
             # Use Salt's template rendering
             # First cache the file
-            cached_path = __salt__["cp.cache_file"](source, saltenv=saltenv)
+            cached_path = __salt__["cp.cache_file"](source)
             if not cached_path:
                 raise SaltInvocationError(f"Failed to cache file: {source}")
 
             # Render the template
-            rendered = __salt__["cp.get_template"](
-                source,
-                dest="",
-                template=template,
-                saltenv=saltenv,
-                context=template_vars,
-                **kwargs
-            )
-
-            if rendered is False or rendered is None:
-                raise SaltInvocationError(f"Failed to render template: {source}")
-
-            # cp.get_template writes to a file, so we need to read it
-            # Actually, let's use slsutil.renderer instead for in-memory rendering
             rendered = __salt__["slsutil.renderer"](
                 path=cached_path,
                 default_renderer=template,
-                saltenv=saltenv,
                 **template_vars
             )
             return rendered
         else:
             # Get raw file contents
-            content = __salt__["cp.get_file_str"](source, saltenv=saltenv)
+            content = __salt__["cp.get_file_str"](source)
             if content is False:
                 raise SaltInvocationError(f"Failed to retrieve file: {source}")
             return content

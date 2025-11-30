@@ -37,7 +37,7 @@ def get_pkgname(source: str, **file_args) -> Optional[str]:
 
     Arguments:
         source: Path to PKGBUILD file (can be salt:// URI or local path)
-        **file_args: File-managed style arguments (template, context, defaults, saltenv, etc.)
+        **file_args: File-managed style arguments (template, context, defaults, etc.)
 
     Returns:
         The package name, or None if not found
@@ -69,7 +69,9 @@ def is_installed(pkgname: str) -> bool:
 
 
 def installed(
-    source: str,
+    source: Optional[str] = None,
+    upstream_source: Optional[str] = None,
+    patches: Optional[list] = None,
     install_deps: bool = True,
     check: bool = True,
     **file_args
@@ -78,9 +80,11 @@ def installed(
 
     Arguments:
         source: Path to PKGBUILD file (can be salt:// URI or local path)
+        upstream_source: Package name to fetch from ABS/AUR using yay -G
+        patches: List of patch files (salt:// URIs) to apply to the PKGBUILD
         install_deps: Whether makepkg should install missing dependencies
         check: Whether to run makepkg's check function
-        **file_args: File-managed style arguments (template, context, defaults, saltenv, etc.)
+        **file_args: File-managed style arguments (template, context, defaults, etc.)
 
     Returns:
         Dictionary with keys:
@@ -92,45 +96,16 @@ def installed(
         SaltInvocationError: If parameters are invalid
         CommandExecutionError: If makepkg command fails
     """
-    # Get PKGBUILD contents using the shared utility
-    pkgbuild_content = __salt__["salt_file_utils.get_managed_file_content"](
-        source=source,
-        **file_args
-    )
+    # Validate that exactly one of source or upstream_source is provided
+    if source and upstream_source:
+        raise SaltInvocationError("Cannot specify both 'source' and 'upstream_source'")
+    if not source and not upstream_source:
+        raise SaltInvocationError("Must specify either 'source' or 'upstream_source'")
 
-    # Parse package name
-    pkgname = _parse_pkgbuild_name(pkgbuild_content)
-    if not pkgname:
-        raise SaltInvocationError("Could not parse package name from PKGBUILD")
-
-    # Check if already installed
-    try:
-        __salt__["pacman_build.run_cmd"](f"pacman --query --info {pkgname}")
-        # Package already installed
-        return {
-            "success": True,
-            "pkgname": pkgname,
-            "message": f"Package {pkgname} is already installed"
-        }
-    except CommandExecutionError:
-        # Not installed, continue with build
-        pass
-
-    # Build makepkg command
-    makepkg_args = ["makepkg", "--noconfirm", "--install"]
-
-    if install_deps:
-        makepkg_args.append("--syncdeps")
-
-    if not check:
-        makepkg_args.append("--nocheck")
-
-    # Create a temporary directory for the build
+    # Step 0: Create temporary directory and set permissions
     with tempfile.TemporaryDirectory() as tmpdir:
-        # Get the build user to set proper permissions
         build_user = __salt__["pacman_build.get_build_user"]()
 
-        # Set ownership and permissions so the build user can access it
         if build_user:
             import pwd
             import stat
@@ -139,16 +114,75 @@ def installed(
             os.chown(tmpdir, uid, gid)
             os.chmod(tmpdir, stat.S_IRWXU | stat.S_IRWXG | stat.S_IROTH | stat.S_IXOTH)
 
+        # Step 1: Read PKGBUILD content
+        if source:
+            pkgbuild_content = __salt__["salt_file_utils.get_managed_file_content"](
+                source=source,
+                **file_args
+            )
+        else:
+            # Download from upstream using yay -Gp
+            try:
+                pkgbuild_content = __salt__["cmd.run"](f"yay -Gp {upstream_source}")
+            except CommandExecutionError as e:
+                raise SaltInvocationError(f"Failed to download PKGBUILD for {upstream_source}: {e}")
+
         # Write PKGBUILD to temp directory
         pkgbuild_path = os.path.join(tmpdir, "PKGBUILD")
         with open(pkgbuild_path, 'w') as f:
             f.write(pkgbuild_content)
 
-        # Set ownership of PKGBUILD file too
-        if build_user:
-            os.chown(pkgbuild_path, uid, gid)
+        # Step 2: Apply patches
+        if patches:
+            for patch_source in patches:
+                # Get patch content
+                patch_content = __salt__["salt_file_utils.get_managed_file_content"](
+                    source=patch_source,
+                    **file_args
+                )
+                # Write patch to temp file
+                patch_path = os.path.join(tmpdir, f"patch_{patches.index(patch_source)}.patch")
+                with open(patch_path, 'w') as f:
+                    f.write(patch_content)
 
-        # Run makepkg in the temp directory
+                # Apply patch
+                try:
+                    __salt__["cmd.run"](f"patch -p0 {pkgbuild_path} < {patch_path}")
+                except CommandExecutionError as e:
+                    raise SaltInvocationError(f"Failed to apply patch {patch_source}: {e}")
+
+            # Read the patched PKGBUILD
+            with open(pkgbuild_path, 'r') as f:
+                pkgbuild_content = f.read()
+
+        # Step 3: Get metadata from PKGBUILD
+        pkgname = _parse_pkgbuild_name(pkgbuild_content)
+        if not pkgname:
+            raise SaltInvocationError("Could not parse package name from PKGBUILD")
+
+        # Step 4: Check if already installed
+        try:
+            __salt__["pacman_build.run_cmd"](f"pacman --query --info {pkgname}")
+            return {
+                "success": True,
+                "pkgname": pkgname,
+                "message": f"Package {pkgname} is already installed"
+            }
+        except CommandExecutionError:
+            pass
+
+        # Build makepkg command
+        makepkg_args = ["makepkg", "--noconfirm", "--install"]
+        if install_deps:
+            makepkg_args.append("--syncdeps")
+        if not check:
+            makepkg_args.append("--nocheck")
+
+        # Set ownership on all files
+        if build_user:
+            __salt__["cmd.run"](f"chown -R {build_user}:{build_user} {tmpdir}")
+
+        # Run makepkg
         cmd = " ".join(makepkg_args)
         try:
             output = __salt__["pacman_build.run_cmd"](cmd, cwd=tmpdir)

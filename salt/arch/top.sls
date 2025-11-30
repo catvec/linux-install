@@ -198,4 +198,5 @@ arch:
     - libre-office
     - vdirsyncer
     - ollama
+    - sdrtrunk
     - sdrpp

@@ -200,3 +200,4 @@ arch:
     - ollama
     - sdrtrunk
     - sdrpp
+    - dsd-fme

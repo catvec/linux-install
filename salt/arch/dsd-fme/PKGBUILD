@@ -2,7 +2,7 @@
 # Contributor: nemanjan00 <nemanjan00@gmail.com>
 
 pkgname=dsd-fme
-pkgver=2025
+pkgver=632041a
 pkgrel=1
 pkgdesc="Digital Speech Decoder - Florida Man Edition"
 arch=('i686' 'x86_64' 'aarch64')

@@ -4,3 +4,4 @@ dsd_fme_installed:
     - upstream_source: dsd-fme
     - patches:
         - salt://dsd-fme/patches/PKGBUILD-version.diff
+    - keep_builddir: true

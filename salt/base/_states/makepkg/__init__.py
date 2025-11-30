@@ -15,6 +15,7 @@ def installed(
     source: Optional[str] = None,
     upstream_source: Optional[str] = None,
     patches: Optional[list] = None,
+    keep_builddir: bool = False,
     install_deps: bool = True,
     check: bool = True,
     **file_args
@@ -25,7 +26,8 @@ def installed(
         name: Path to PKGBUILD file, or state name if source/upstream_source is specified
         source: Path to PKGBUILD file (can be salt:// URI or local path). Defaults to name.
         upstream_source: Package name to fetch from ABS/AUR using yay -G
-        patches: List of patch files (salt:// URIs) to apply to the PKGBUILD
+        patches: List of patch files (salt:// URIs) to apply to the PKGBUILD, make to patches are setup to be with CWD = directory with PKGBUILD file
+        keep_builddir: If True, use persistent directory at /var/cache/salt/makepkg/<pkgname>
         install_deps: Whether makepkg should install missing dependencies
         check: Whether to run makepkg's check function
         **file_args: File-managed style arguments (template, context, defaults, etc.)
@@ -59,9 +61,13 @@ def installed(
             comment="Cannot specify both 'source' and 'upstream_source'",
         )
 
-    # Default source to name if neither source nor upstream_source provided
-    if source is None and upstream_source is None:
-        source = name
+    if not source and not upstream_source:
+        return SaltStateRes(
+            name=name,
+            result=False,
+            changes={},
+            comment="Must specify either 'source' or 'upstream_source'",
+        )
 
     # Get package name from PKGBUILD (for test mode and validation)
     # For upstream_source, we'll use the package name directly
@@ -118,6 +124,7 @@ def installed(
             source=source,
             upstream_source=upstream_source,
             patches=patches,
+            keep_builddir=keep_builddir,
             install_deps=install_deps,
             check=check,
             **file_args

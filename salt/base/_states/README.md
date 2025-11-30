@@ -1,6 +1,8 @@
 # States
 Custom Salt states.
 
+> **Note**: See also [custom Salt execution modules](../_modules/README.md) which provide the underlying functionality.
+
 # Table Of Contents
 - [Overview](#overview)
 - [Development](#development)
@@ -11,6 +13,8 @@ Provides several custom Salt states:
 - `aurpkg`: Manages AUR packages from the Arch Linux auxiliary package repository
   - `check_installed(name: str, pkgs: Optional[List[str]])`: Checks the specified package(s) are installed
   - `installed(name: str, pkgs: Optional[List[str]])`: Ensures the specified package(s)s are installed
+- `makepkg`: Build and install Arch Linux packages from PKGBUILD files
+  - `installed(name: str, source: Optional[str], install_deps: bool, check: bool, **file_args)`: Build and install a package from a PKGBUILD with support for salt:// URIs and Jinja templating
 - `user_service`: Manages services run in a user's session
   - `enabled(name: str, user: str, start: bool)`: Enables a service for a user, if `start` given then the service is also started
   - `disabled(name: str, user: str, stop: bool)`: Disables a service for a user, if `stop` is given the service is also stopped

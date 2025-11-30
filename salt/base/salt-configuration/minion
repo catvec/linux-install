@@ -1385,6 +1385,7 @@ ext_pillar:
 # /proc/sys/net/ipv4/tcp_keepalive_intvl.
 #tcp_keepalive_intvl: -1
 
-# AUR package manager configuration
-aurpkg:
-  build_user: noah
+# Pacman build configuration
+# Used by makepkg and AUR package managers which require non-root execution
+pacman:
+  nonroot_builder: noah

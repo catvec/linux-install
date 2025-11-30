@@ -7,78 +7,21 @@ Configuration
 =============
 The module requires configuration via the Salt minion file.
 
-The Yay utility does not allow itself to be run as the root user. This is because it builds unknown source code. Configure the user for which Yay runs as by setting the build_user field.
+The Yay utility does not allow itself to be run as the root user. This is because it builds unknown source code.
+Configure the user for which Yay runs as by setting the nonroot_builder field under pacman configuration.
 
 ```yaml
-aurpkg:
-  build_user: <USER>
+pacman:
+  nonroot_builder: <USER>
 ```
 """
-from typing import Optional, List, TypedDict, Union, Dict
-import subprocess
+from typing import Optional, List
 import logging
-import os
-from pwd import getpwnam
-from grp import getgrnam
 
 from salt.exceptions import CommandExecutionError
+from salt_types import SaltStateRes, SaltStateResChanges
 
 log = logging.getLogger(__name__)
-
-OPTS_PARENT_KEY = "aurpkg"
-OPTS_BUILD_USER_KEY = "build_user"
-
-class SaltStateResChanges(TypedDict):
-    """ Describes changes.
-    Fields:
-    - old: User facing string describing previous status before changes
-    - new: User facing string describing status after changes
-    """
-    old: str
-    new: str
-
-class SaltStateRes(TypedDict):
-    """ Describes the result of a salt state execution.
-    Fields:
-    - name: Identifier of state block
-    - result: Indicates if the state was successful, failed, or shouldn't run, see for more details: https://docs.saltproject.io/en/latest/ref/states/writing.html#return-data
-    - changes: Describes what changed due to this state running, SaltStateResChanges if changes were made, an empty dict if no changes were made
-    - comment: Single line descibing what changed
-    """
-    name: str
-    result: Optional[bool]
-    changes: Union[SaltStateResChanges, Dict[str, str]]
-    comment: str
-
-def _cmd_run(cmd: str) -> str:
-    """ Run a command as the correct user.
-    This inspects the build user configuration option to determine what user to run Yay as, then runs the command using the cmd.run salt state.
-
-    Arguments:
-    - cmd: To run
-
-    Returns: String output of command
-
-    Raises:
-    - CommandExecutionError: If the command exits with a non-zero exit code
-    """
-    kwargs = {
-        "cmd": cmd,
-        "raise_err": True,
-    }
-    
-    # Figure out if we want to run as a specific user
-    build_user = None
-    aurpkg_opts = __opts__.get(OPTS_PARENT_KEY)
-    if aurpkg_opts is not None:
-        build_user = aurpkg_opts.get(OPTS_BUILD_USER_KEY)
-
-    if build_user is not None:
-        kwargs["runas"] = build_user
-        kwargs["group"] = build_user
-    
-    # Run command
-    return __salt__["cmd.run"](**kwargs)
     
 
 def _installed(name: str, pkgs: List[str]) -> SaltStateRes:
@@ -102,11 +45,11 @@ def _installed(name: str, pkgs: List[str]) -> SaltStateRes:
     )
 
     try:
-        _cmd_run(f"yay --sync --refresh --noconfirm {pkgs_space_sep_str}")
+        __salt__["pacman_build.run_cmd"](f"yay --sync --refresh --noconfirm {pkgs_space_sep_str}")
     except CommandExecutionError:
         res["result"] = False
         res["changes"]["new"] = f"{pkgs} failed to installed"
-    
+
     return res
 
 def _check_installed(name: str, pkgs: List[str]) -> SaltStateRes:
@@ -121,7 +64,7 @@ def _check_installed(name: str, pkgs: List[str]) -> SaltStateRes:
     is_installed = True
 
     try:
-        _cmd_run(f"yay --query --info {pkgs_space_sep_str}")
+        __salt__["pacman_build.run_cmd"](f"yay --query --info {pkgs_space_sep_str}")
     except CommandExecutionError:
         is_installed = False
 
@@ -189,5 +132,4 @@ def installed(name: str, pkgs: Optional[List[str]]=None) -> SaltStateRes:
             comment=f"already installed {pkgs_str}",
         )
 
-    return _installed(name=name, pkgs=pkgs)
-            
+    return _installed(name=name, pkgs=pkgs if pkgs is not None else [name])

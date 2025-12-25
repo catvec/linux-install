@@ -23,7 +23,7 @@ arch:
     - backlight
     #- thunderbolt
     #- pam
-    #- polkit
+    - polkit
     - fonts
     #- firewall
     #- power-management

@@ -1,4 +1,4 @@
-{% set version = '12.4.2' %}
+{% set version = '12.5.7' %}
 {% set dir = '/opt/yay' %}
 
 {% import_yaml 'salt-configuration/init.sls' as salt_config %}
@@ -13,7 +13,7 @@ yay:
   
   download:
     url: https://github.com/Jguer/yay/releases/download/v{{ version }}/yay_{{ version }}_x86_64.tar.gz
-    sha: 1ad3e5dbc410edc668eb9062bb6e56b90da818780581f06aa79dd696aa0b5ceb
+    sha: 28b3c5d3fd39d9b123c58f3f2689783da11e4a48bf6ed660a6dc7fe6aabdbeb3
     dir: {{ dir }}
 
   link:

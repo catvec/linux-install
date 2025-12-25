@@ -28,6 +28,9 @@ i3:
 
   # Programs to run
   bins:
+    # I3 window manager
+    i3: i3
+
     # Terminal program
     terminal: kitty
 

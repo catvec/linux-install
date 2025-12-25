@@ -27,6 +27,7 @@ i3_aux_pkgs:
     - name: {{ user['home'] }}/{{ pillar.i3.kde.user_svc_path }}
     - source: salt://i3/kde/plasma-i3.service
     - makedirs: True
+    - template: jinja
 
 {{ user['name'] }}_enable_i3_kde_svc:
   user_service.enabled:

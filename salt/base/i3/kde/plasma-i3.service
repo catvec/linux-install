@@ -6,6 +6,6 @@ Description=Plasma i3 Window Manager
 Before=plasma-workspace.target
 
 [Service]
-ExecStart=/usr/bin/i3
+ExecStart={{ pillar.i3.bins.i3 }}
 Slice=session.slice
 Restart=on-failure

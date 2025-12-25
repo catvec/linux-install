@@ -56,6 +56,7 @@ arch:
     - kitty
     - c
     - cmake
+    - meson
     - uv
     - shellcheck
     - screen

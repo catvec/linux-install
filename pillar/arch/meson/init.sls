@@ -1,0 +1,3 @@
+menson:
+  multipkgs:
+    - pkg: meson

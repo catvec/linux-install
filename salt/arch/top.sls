@@ -114,6 +114,7 @@ arch:
     - fedify
     - deno
     - openai-codex
+    - cables
 
     # General tools configuration
     - gpg

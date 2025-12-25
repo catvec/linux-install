@@ -47,7 +47,8 @@ def run_cmd(cmd: str, **kwargs) -> str:
         String output of command
 
     Raises:
-        CommandExecutionError: If the command exits with a non-zero exit code
+        CommandExecutionError: If the command exits with a non-zero exit code,
+            with the command name included in the error message
     """
     run_kwargs = {
         "cmd": cmd,
@@ -64,5 +65,9 @@ def run_cmd(cmd: str, **kwargs) -> str:
         run_kwargs["runas"] = build_user
         run_kwargs["group"] = build_user
 
-    # Run command
-    return __salt__["cmd.run"](**run_kwargs)
+    # Run command and wrap errors with command context
+    try:
+        return __salt__["cmd.run"](**run_kwargs)
+    except CommandExecutionError as e:
+        # Re-raise with command context if not already included
+        raise CommandExecutionError(f"Command '{cmd}' failed: {e}")

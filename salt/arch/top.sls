@@ -115,6 +115,7 @@ arch:
     - fedify
     - deno
     - openai-codex
+    - tree
     - cables
 
     # General tools configuration

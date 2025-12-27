@@ -84,6 +84,7 @@ arch:
     #- eksctl
     - java
     - android-sdk
+    - apktool
     - salt-lint
     - jq
     - yq

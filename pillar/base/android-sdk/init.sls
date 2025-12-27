@@ -1,4 +1,4 @@
-{% set sdk_root = '/home/noah/.local/lib/android-sdk' %}
+{% set sdk_root = '/opt/android-sdk' %}
 {% set cli_tools_extract_parent_dir = sdk_root + '/download' %}
 {% set cli_tools_extract_target_dir = cli_tools_extract_parent_dir + '/cmdline-tools' %}
 {% set cli_tools_dir = sdk_root + '/cmdline-tools/latest' %}
@@ -11,8 +11,10 @@ android_sdk:
   cli_tools_dir: {{ cli_tools_dir }}
 
   # https://developer.android.com/studio
-  cli_tools_url: https://dl.google.com/android/repository/commandlinetools-linux-10406996_latest.zip
-  cli_tools_hash: 8919e8752979db73d8321e9babe2caedcc393750817c1a5f56c128ec442fb540
+  # or
+  # https://developer.android.com/studio#command-line-tools-only
+  cli_tools_url: https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip
+  cli_tools_hash: 7ec965280a073311c339e571cd5de778b9975026cfcbe79f2b1cdcb1e15317ee
 
   # Users in group can access Android devices
   udev_group: androiddev

@@ -4,8 +4,6 @@
   archive.extracted:
     - source: {{ pillar.android_sdk.cli_tools_url }}
     - source_hash: {{ pillar.android_sdk.cli_tools_hash }}
-    - user: noah
-    - group: noah
 
 {{ pillar.android_sdk.cli_tools_dir }}:
   file.copy:
@@ -18,6 +16,8 @@
 accept_licenses:
   cmd.run:
     - name: yes | {{ pillar.android_sdk.cli_tools_dir }}/bin/sdkmanager --licenses
+    - env:
+      - JAVA_HOME: {{ pillar.java.java_home }}
     - require:
       - file: {{ pillar.android_sdk.cli_tools_dir }}
 
@@ -37,7 +37,16 @@ accept_licenses:
 {% for pkg in pillar['android_sdk']['sdk_pkgs'] %}
 {{ pillar.android_sdk.cli_tools_dir }}/bin/sdkmanager '{{ pkg }}':
   cmd.run:
+    - env:
+      - JAVA_HOME: {{ pillar.java.java_home }}
     - require:
       - cmd: accept_licenses
 {% endfor %}
+
+# Set permissions so all users can access the SDK
+set_sdk_permissions:
+  cmd.run:
+    - name: chmod -R 755 {{ pillar.android_sdk.sdk_root }}
+    - require:
+      - cmd: accept_licenses
 

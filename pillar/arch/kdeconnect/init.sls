@@ -1,0 +1,3 @@
+kdeconnect:
+  multipkgs:
+    - pkg: kdeconnect

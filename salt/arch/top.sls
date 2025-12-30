@@ -207,3 +207,4 @@ arch:
     - sdrtrunk
     - sdrpp
     - dsd-fme
+    - kdeconnect

@@ -21,6 +21,7 @@ arch:
     - yay
     - network-utils
     - backlight
+    - hibernation
     #- thunderbolt
     #- pam
     - polkit

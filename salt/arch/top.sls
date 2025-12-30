@@ -82,6 +82,7 @@ arch:
     - python
     - pipenv
     - aws-cli
+    - gcloud-cli
     #- eksctl
     - java
     - android-sdk

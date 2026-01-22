@@ -204,6 +204,7 @@ arch:
     - libre-office
     - vdirsyncer
     - ollama
+    - ollama-code
     - sdrtrunk
     - sdrpp
     - dsd-fme

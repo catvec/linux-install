@@ -121,6 +121,7 @@ arch:
     - openai-codex
     - tree
     - cables
+    - firebase
 
     # General tools configuration
     - gpg

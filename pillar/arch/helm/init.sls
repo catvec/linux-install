@@ -1,0 +1,3 @@
+helm:
+  multipkgs:
+    - pkg: helm

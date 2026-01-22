@@ -208,3 +208,4 @@ arch:
     - sdrpp
     - dsd-fme
     - kdeconnect
+    - tailscale

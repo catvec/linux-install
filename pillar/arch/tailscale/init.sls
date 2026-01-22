@@ -1,0 +1,3 @@
+tailscale:
+  multipkgs:
+    - pkg: tailscale

@@ -1,3 +1,3 @@
 tailscale:
-  pkgs:
-    - net-vpn/tailscale
+  multipkgs:
+    - pkg: net-vpn/tailscale

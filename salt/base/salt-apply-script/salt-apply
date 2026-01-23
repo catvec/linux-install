@@ -25,10 +25,10 @@ if [ -f "$env_flag_file" ]; then
     check "Failed to read default environment option flag file"
 fi
 
-while getopts "tls:p:e:h" opt; do
+while getopts "tl:s:p:e:h" opt; do
     case "$opt" in
 	t) post_args+=("test=True") ;;
-	l) post_args+=("-l trace") ;;
+	l) post_args+=("-l" "$OPTARG") ;;
 	s) states+=("$OPTARG") ;;
 	p) pillars+=("$OPTARG") ;;
 	e) setup_environment="$OPTARG" ;;
@@ -42,7 +42,7 @@ USAGE
 OPTIONS
 
    -t           Run states in test mode.
-   -l           Run state.apply with -l trace option.
+   -l LEVEL     Run state.apply with -l LEVEL option.
    -s STATE     State to run, can be provided multiple times.
    -p PILLAR    Set pillar values, can be provided multiple times.
    -e ENV       Salt environment to use. See below for details on the

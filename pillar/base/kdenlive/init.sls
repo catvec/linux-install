@@ -1,0 +1,2 @@
+kdenlive:
+  multipkgs: []

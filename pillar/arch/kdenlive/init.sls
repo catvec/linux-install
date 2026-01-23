@@ -1,0 +1,3 @@
+kdenlive:
+  multipkgs:
+    - pkg: kdenlive

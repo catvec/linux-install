@@ -213,3 +213,4 @@ arch:
     - dsd-fme
     - kdeconnect
     - tailscale
+    - kdenlive

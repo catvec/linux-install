@@ -1,2 +1,2 @@
 open_broadcaster_software:
-  pkgs: []
+  multipkgs: []

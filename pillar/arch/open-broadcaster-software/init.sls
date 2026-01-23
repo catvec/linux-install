@@ -1,3 +1,3 @@
 open_broadcaster_software:
-  pkgs:
-    - obs-studio
+  multipkgs:
+    - pkg: obs-studio

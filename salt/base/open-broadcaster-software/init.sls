@@ -1,6 +1,5 @@
 # Installs Open Broadcaster Software
 
-{% for pkg in pillar['open_broadcaster_software']['pkgs'] %}
-{{ pkg }}:
-  pkg.installed
-{% endfor %}
+open_broadcaster_software_multipkgs:
+  multipkg.installed:
+    - pkgs: {{ pillar.open_broadcaster_software.multipkgs }}

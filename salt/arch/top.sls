@@ -172,6 +172,7 @@ arch:
     #- gnucash
     - youtube-dl
     - open-broadcaster-software
+    - open-broadcaster-software-input-overlay
     - steam
     - steam-link
     #- tailscale

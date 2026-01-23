@@ -1,0 +1,3 @@
+screenkey:
+  multipkgs:
+    - pkg: screenkey

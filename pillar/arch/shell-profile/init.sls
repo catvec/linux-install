@@ -43,3 +43,4 @@ shell_profile:
     - doom_emacs
     - cargo_path
     - docker_compose_alias
+    - pyenv

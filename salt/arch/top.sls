@@ -80,6 +80,7 @@ arch:
     - telnet
     #- insomnia
     - python
+    - pyenv
     - pipenv
     - aws-cli
     - gcloud-cli

@@ -1,4 +1,77 @@
 x11:
   pkgs:
     - xorg-server
+
+    # xorg-apps group (cannot use pkg.installed w a Pacman group)
+    # pacman -Sg xorg-apps | xargs -n1 echo "    -" >> pillar/arch/x11/init.sls
+    - xorg-bdftopcf
     - xorg-apps
+    - xorg-iceauth
+    - xorg-apps
+    - xorg-mkfontscale
+    - xorg-apps
+    - xorg-sessreg
+    - xorg-apps
+    - xorg-setxkbmap
+    - xorg-apps
+    - xorg-smproxy
+    - xorg-apps
+    - xorg-x11perf
+    - xorg-apps
+    - xorg-xauth
+    - xorg-apps
+    - xorg-xbacklight
+    - xorg-apps
+    - xorg-xcmsdb
+    - xorg-apps
+    - xorg-xcursorgen
+    - xorg-apps
+    - xorg-xdpyinfo
+    - xorg-apps
+    - xorg-xdriinfo
+    - xorg-apps
+    - xorg-xev
+    - xorg-apps
+    - xorg-xgamma
+    - xorg-apps
+    - xorg-xhost
+    - xorg-apps
+    - xorg-xinput
+    - xorg-apps
+    - xorg-xkbcomp
+    - xorg-apps
+    - xorg-xkbevd
+    - xorg-apps
+    - xorg-xkbprint
+    - xorg-apps
+    - xorg-xkbutils
+    - xorg-apps
+    - xorg-xkill
+    - xorg-apps
+    - xorg-xlsatoms
+    - xorg-apps
+    - xorg-xlsclients
+    - xorg-apps
+    - xorg-xmodmap
+    - xorg-apps
+    - xorg-xpr
+    - xorg-apps
+    - xorg-xprop
+    - xorg-apps
+    - xorg-xrandr
+    - xorg-apps
+    - xorg-xrdb
+    - xorg-apps
+    - xorg-xrefresh
+    - xorg-apps
+    - xorg-xset
+    - xorg-apps
+    - xorg-xsetroot
+    - xorg-apps
+    - xorg-xvinfo
+    - xorg-apps
+    - xorg-xwd
+    - xorg-apps
+    - xorg-xwininfo
+    - xorg-apps
+    - xorg-xwud

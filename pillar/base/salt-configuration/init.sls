@@ -1,8 +1,10 @@
 {% set content_root = '/srv' %}
 
 salt_configuration:
-  # Salt minion configuration file:
-  minion_config_file: /etc/salt/minion
+  # Salt minion configuration file locations
+  config_files:
+    - /etc/salt/minion
+    - /etc/linux-install/salt/base/salt-configuration/minion.templated
 
   # Custom modules directory
   custom_modules_dir: {{ content_root }}/salt/base/_modules

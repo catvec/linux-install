@@ -40,4 +40,3 @@ x11:
     - xorg-xwd
     - xorg-xwininfo
     - xorg-xwud
-q

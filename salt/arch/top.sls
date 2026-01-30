@@ -2,7 +2,6 @@ arch:
   '*':
     # Salt configuration
     - salt-configuration
-    - salt-virtual-environment
 
     # Base system configuration
     - kernel
@@ -138,9 +137,9 @@ arch:
     
     # User interface configuration
     - vulkan
-    - wayland
-    - xdg-desktop-portal
-    - start-wayland-script
+    #- wayland
+    #- xdg-desktop-portal
+    #- start-wayland-script
     - x11
     - xorg
     - wl-snip

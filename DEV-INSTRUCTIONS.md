@@ -179,3 +179,25 @@ Follow the instructions below:
      
 	   - Now put a list of every salt state you want here
    ```
+
+## Host Dependant Pillars
+Each pillar directory for a salt environment has a `pillar-stack.cfg` file in it. This configures salt's `ext_pillar` module, telling it which pillars to read for the current host.
+
+There are 2 main setups which can be used here:
+
+- Read all pillars for all hosts.  
+  To configure this behavior simply put the following in the pillar stack file:
+  ```
+  */*
+  ```
+- Common pillars, with host specific values:
+  This setup allows one salt environment to have different values depending on the host salt is running on.
+  
+  Pillar files with the name `init.sls` will be loaded on any host.  
+  Pillar files with the name `<hostname>.sls` (where `<hostname>` is the host's hostname) will only be loaded on matching hosts.
+  
+  To configure this behavior put the following in the pillar stack file:
+  ```
+  */init.sls
+  */{{ __grains__["id"] }}.sls
+  ```

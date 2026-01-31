@@ -1,9 +1,4 @@
-{% set version = "6.6.5.arch1-1" %}
-
 kernel:
-  # Current version
-  version: {{ version }}
-
   # Package which installs Kernel
   kernel_pkg: linux
 

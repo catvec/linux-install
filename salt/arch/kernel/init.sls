@@ -2,7 +2,7 @@
 kernel_pkg:
   pkg.installed:
     - pkgs:
-      - {{ pillar.kernel.kernel_pkg }}: {{ pillar.kernel.version }}
+      - {{ pillar.kernel.kernel_pkg }}
 
 {{ pillar.kernel.modprobe_dir }}:
   file.recurse:

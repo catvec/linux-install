@@ -239,6 +239,7 @@ arch:
     - netcat
     - telnet
     - rsync
+    - unzip
 
     # Development environment configuration
     - ssh

@@ -1,0 +1,3 @@
+unzip:
+  multipkgs:
+    - pkg: unzip

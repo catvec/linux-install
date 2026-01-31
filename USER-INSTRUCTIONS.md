@@ -12,6 +12,10 @@ Run:
 
 ```
 # /etc/linux-install/live-scripts/crypsetup.sh -p ROOT_PARTITION -c cryptroot
+# or if your live install ISO was not built with this repo's contents:
+# cryptsetup -v luksFormat ROOT_PARTITION
+# cryptsetup open ROOT_PARITITION cryptroot
+# mkfs.ext4 /dev/mapper/cryptroot
 ```
 
 ## Download Linux Install Repository

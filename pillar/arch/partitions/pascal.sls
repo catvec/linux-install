@@ -28,7 +28,7 @@ partitions:
     name: /dev/nvme0n1p2
 
     # UUID
-    part_uuid: 5c00e106-f99f-4bb7-936b-ce31fb8b947c
+    uuid: 5c00e106-f99f-4bb7-936b-ce31fb8b947c
     luks_uuid: 6a7fc498-f8a1-44bf-8960-46302e417b7a
 
     # Mountpoint

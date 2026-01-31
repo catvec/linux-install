@@ -45,6 +45,12 @@ arch:
     #- user-service-manager
     #- xdg-autostart
 
+  'pascal':
+    # Higher level confifguration
+    - backlight
+    - fingerprint-reader
+    - fingerprint-gui
+
     # Development environment configuration
     - ssh
     - git
@@ -212,3 +218,174 @@ arch:
     - tailscale
     - screenkey
     - kdenlive
+
+  'marcuse':
+    # General tools configuration
+    - gpg
+    - trash-cli
+    - htop
+    - flatpak
+    - flameshot
+    - spell-check
+    - qt
+    - pkgfile
+    - ncdu
+    - modeprobed-db
+    - tree
+    - jq
+    - yq
+    - dig
+    - nmap
+    - netcat
+    - telnet
+    - rsync
+
+    # Development environment configuration
+    - ssh
+    - git
+    - salt-apply-script
+    - alacritty
+    - kitty
+    - c
+    - cmake
+    - meson
+
+    # ... Development environments
+    - gtk-dev
+    #- uv
+    #- shellcheck
+    - screen
+    #- kubectl
+    - ncdu
+    - containers
+    #- go
+    #- flutter
+    #- terraform
+    #- tflint
+    #- infracost
+    #- software-defined-radio
+    #- digitalocean-cli
+    #- godot
+    #- dotnet
+    #- ceph-client
+    #- insomnia
+    - python
+    - pyenv
+    - pipenv
+    #- aws-cli
+    #- gcloud-cli
+    #- helm
+    #- eksctl
+    - java
+    #- android-sdk
+    #- apktool
+    #- salt-lint
+    #- unreal-engine
+    #- httpie
+    #- s3cmd
+    #- wireshark
+    #- hugo
+    #- arduino
+    #- latex
+    #- talosctl
+    #- ipmitool
+    #- icedtea-web
+    #- buffalo
+    #- platformio
+    #- downgrade
+    #- xxd
+    #- kubectx
+    #- nx
+    #- gemini-cli
+    #- claude-code
+    #- qwen-code
+    #- vagrant
+    #- mkcert
+    #- libfreenect
+    #- caffeinate
+    #- fedify
+    #- deno
+    #- openai-codex
+    #- cables
+    #- firebase
+    
+    # User interface configuration
+    - vulkan
+    #- wayland
+    #- xdg-desktop-portal
+    #- start-wayland-script
+    - x11
+    - xorg
+    #- wl-snip
+    - rice
+    #- sway
+    #- hyprland
+    - scrot
+    - i3
+    - gnome-keyring
+
+    # Applications configuration
+    #- links
+    - firefox
+    - geoclue # (Firefox geolocation)
+    - avahi
+    #- librewolf
+    #- chrome
+    #- syncthing
+    #- blender
+    #- emacs
+    - doom-emacs
+    #- vscode
+    #- cursor-editor
+    - signal
+    - gimp
+    - discord
+    #- openvpn
+    #- qbittorrent
+    #- k3s
+    #- gnucash
+    #- youtube-dl
+    #- open-broadcaster-software
+    #- open-broadcaster-software-input-overlay
+    - steam
+    - steam-link
+    #- tailscale
+    - file-manager
+    #- ngrok
+    #- inkscape
+    #- vlc
+    #- mpv
+    #- anki
+    #- qgis
+    #- jetbrains
+    #- hidclient
+    #- go-swagger
+    #- openapi-generator
+    #- zoom
+    #- qemu
+    #- gns3
+    #- virtualbox
+    #- 7zip
+    #- rpi-imager
+    #- cockatrice
+    #- wine
+    #- ipmiview
+    #- iperf
+    #- software-defined-radio
+    #- chirp
+    #- gthumb
+    #- korganizer
+    #- evolution
+    #- strawberry-music-organizer
+    #- gpodder
+    #- libre-office
+    #- vdirsyncer
+    #- ollama
+    #- ollama-code
+    #- sdrtrunk
+    #- sdrpp
+    #- dsd-fme
+    #- kdeconnect
+    #- tailscale
+    #- screenkey
+    #- kdenlive

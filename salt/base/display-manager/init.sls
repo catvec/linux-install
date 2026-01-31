@@ -38,12 +38,9 @@ display_manager_pkgs:
       - multipkg: display_manager_pkgs
 {% endfor %}
 
-display_manager_svc_running:
-  service.running:
-    - name: {{ pillar.display_manager.svc }}
-    - requires:
-      - pkg: display_manager_pkgs
-
+# The state doesn't start the service, just enable it
+# If the service was started in the state every time the state runs the service would also be restarted
+# On first install just reboot after running to get the effect
 display_manager_svc_enabled:
   service.enabled:
     - name: {{ pillar.display_manager.svc }}

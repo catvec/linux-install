@@ -1,0 +1,3 @@
+nvtop:
+  multipkgs:
+    - pkg: nvtop

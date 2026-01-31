@@ -224,6 +224,7 @@ arch:
     - gpg
     - trash-cli
     - htop
+    - nvtop
     - flatpak
     - flameshot
     - spell-check

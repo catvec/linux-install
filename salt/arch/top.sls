@@ -136,7 +136,7 @@ arch:
     - qt
     - pkgfile
     - ncdu
-    - modeprobed-db
+    - modprobed-db
     
     # User interface configuration
     - vulkan
@@ -230,7 +230,7 @@ arch:
     - qt
     - pkgfile
     - ncdu
-    - modeprobed-db
+    - modprobed-db
     - tree
     - jq
     - yq

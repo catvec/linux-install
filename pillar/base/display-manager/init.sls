@@ -1,5 +1,5 @@
 display_manager:
-  pkgs: []
+  multipkgs: []
   svc: sddm
 
   conf_dir: /etc/sddm.conf.d

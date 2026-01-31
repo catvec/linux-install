@@ -1,4 +1,4 @@
 display_manager:
-  pkgs:
-    - sddm
-    - plasma-framework5
+  multipkgs:
+    - pkg: sddm
+    - aurpkg: plasma-framework5

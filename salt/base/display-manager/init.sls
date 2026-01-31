@@ -1,7 +1,7 @@
 # Installs a display manager
 display_manager_pkgs:
-  pkg.installed:
-    - pkgs: {{ pillar.display_manager.pkgs }}
+  multipkg.installed:
+    - pkgs: {{ pillar.display_manager.multipkgs }}
 
 # {{ pillar.display_manager.conf_dir }}:
 #   file.recurse:
@@ -16,8 +16,8 @@ display_manager_pkgs:
   file.managed:
     - source: salt://display-manager/sddm.conf.d/{{ file }}
     - template: jinja
-    - requires:
-      - pkg: display_manager_pkgs
+    - require:
+      - multipkg: display_manager_pkgs
 {% endfor %}
 
 {{ pillar.display_manager.faces_dir }}:
@@ -26,15 +26,15 @@ display_manager_pkgs:
     - clean: True
     - dir_mode: 755
     - file_mode: 644
-    - requires:
-      - pkg: display_manager_pkgs
+    - require:
+      - multipkg: display_manager_pkgs
 
 {% for theme in pillar['display_manager']['themes'] %}
 {{ pillar.display_manager.themes_dir }}/{{ theme }}:
   file.recurse:
     - source: salt://display-manager/themes/{{ theme }}
-    - requires:
-      - pkg: display_manager_pkgs
+    - require:
+      - multipkg: display_manager_pkgs
 {% endfor %}
 
 display_manager_svc_running:
@@ -46,5 +46,5 @@ display_manager_svc_running:
 display_manager_svc_enabled:
   service.enabled:
     - name: {{ pillar.display_manager.svc }}
-    - requires:
-      - pkg: display_manager_pkgs
+    - require:
+      - multipkg: display_manager_pkgs

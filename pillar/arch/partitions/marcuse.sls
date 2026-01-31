@@ -52,7 +52,7 @@ partitions:
     name: /dev/nvme0n1p2
 
     # Partition UUID
-    uuid: 03ddaaa4-37c7-43da-8976-1acd118e7ec7
+    uuid: 635f603e-418a-4b5a-9ba1-967b4ab3ce4e
 
     # Mount point
     mountpoint: none

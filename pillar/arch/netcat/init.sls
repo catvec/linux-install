@@ -1,3 +1,3 @@
 netcat:
   pkgs:
-    - gnu-netcat
+    - openbsd-netcat

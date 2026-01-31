@@ -2,12 +2,8 @@
 
 # Install
 i3_pkgs:
-  pkg.installed:
-    - pkgs: {{ pillar.i3.pkgs }}
-
-i3_aux_pkgs:
-  {{ pillar.i3.aux_pkgs_state }}.installed:
-    - pkgs: {{ pillar.i3.aux_pkgs }}
+  multipkg.installed:
+    - pkgs: {{ pillar.i3.multipkgs }}
 
 # Scripts
 {{ pillar.i3.scripts_dir }}:
@@ -51,6 +47,6 @@ i3_aux_pkgs:
     - group: {{ user['name'] }}
     - makedirs: True
     - require:
-      - pkg: i3_pkgs
+      - multipkg: i3_pkgs
 {% endfor %}
 {% endfor %}

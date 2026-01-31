@@ -1,4 +1,5 @@
 i3:
-  pkgs:
-    - i3-gaps 
-    - i3lock
+  multipkgs:
+    - pkg:
+      - i3-gaps 
+      - i3lock

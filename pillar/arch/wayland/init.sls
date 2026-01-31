@@ -1,4 +1,4 @@
 wayland:
   pkgs:
     - xorg-xwayland
-    - xorg-xeyes
+    # moved xeyes to xorg state

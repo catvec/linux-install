@@ -20,6 +20,6 @@ i3:
       # Status bar
       - polybar
 
-  - aurpkg:
-    - ttf-material-icons-git
-    - latte-dock
+    - aurpkg:
+      - ttf-material-icons-git
+      - latte-dock

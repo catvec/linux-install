@@ -19,7 +19,6 @@ arch:
     - audio
     - yay
     - network-utils
-    - backlight
     - hibernation
     #- thunderbolt
     #- pam
@@ -30,8 +29,6 @@ arch:
     - bluetooth
     - display-manager
     - wireguard
-    - fingerprint-reader
-    - fingerprint-gui
     - printers
     
     # User configuration

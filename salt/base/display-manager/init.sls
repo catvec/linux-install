@@ -16,6 +16,7 @@ display_manager_pkgs:
   file.managed:
     - source: salt://display-manager/sddm.conf.d/{{ file }}
     - template: jinja
+    - makedirs: True
     - require:
       - multipkg: display_manager_pkgs
 {% endfor %}

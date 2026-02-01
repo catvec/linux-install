@@ -354,7 +354,7 @@ arch:
     #- open-broadcaster-software-input-overlay
     - steam
     - steam-link
-    #- tailscale
+    - tailscale
     - file-manager
     #- ngrok
     #- inkscape

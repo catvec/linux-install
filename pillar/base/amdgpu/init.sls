@@ -1,0 +1,2 @@
+amdgpu:
+  multipkgs: []

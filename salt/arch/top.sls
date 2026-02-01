@@ -220,6 +220,9 @@ arch:
     - kdenlive
 
   'marcuse':
+    # Base system configuration
+    - amdgpu
+    
     # General tools configuration
     - gpg
     - trash-cli

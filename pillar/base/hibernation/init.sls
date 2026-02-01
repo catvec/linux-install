@@ -10,3 +10,9 @@ hibernation:
 
   # Systemd sleep drop-in configuration file for hibernate delay
   sleep_conf_file: /etc/systemd/sleep.conf.d/hibernation.conf
+
+  # Hibernate delay in seconds - only used when hibernation_enabled is true
+  hibernate_delay: 1200
+
+  # Default: disable hibernation
+  hibernation_enabled: false

@@ -10,6 +10,7 @@
 {{ pillar.hibernation.logind_conf_file }}:
   file.managed:
     - source: salt://hibernation/logind.conf
+    - template: jinja
     - makedirs: True
     - require:
       - file: {{ pillar.hibernation.logind_conf_dir }}
@@ -22,6 +23,7 @@
 {{ pillar.hibernation.sleep_conf_file }}:
   file.managed:
     - source: salt://hibernation/sleep.conf
+    - template: jinja
     - makedirs: True
     - require:
       - file: {{ pillar.hibernation.sleep_conf_dir }}

@@ -69,6 +69,7 @@ arch:
     #- ncdu
     - containers
     - go
+    - nodejs
     - flutter
     - terraform
     - tflint
@@ -266,6 +267,7 @@ arch:
     - ncdu
     - containers
     #- go
+    - nodejs
     #- flutter
     #- terraform
     #- tflint

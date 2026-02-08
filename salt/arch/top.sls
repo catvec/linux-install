@@ -30,6 +30,7 @@ arch:
     - display-manager
     - wireguard
     - printers
+    - man
     
     # User configuration
     - users

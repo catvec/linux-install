@@ -31,6 +31,7 @@ arch:
     - wireguard
     - printers
     - man
+    - pagers
     
     # User configuration
     - users

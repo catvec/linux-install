@@ -305,8 +305,8 @@ arch:
     #- xxd
     #- kubectx
     #- nx
-    #- gemini-cli
-    #- claude-code
+    - gemini-cli
+    - claude-code
     #- qwen-code
     #- vagrant
     #- mkcert

@@ -42,7 +42,7 @@ Then install the following salt states in this order using `salt-apply -s <NAME>
 
 - `pacman`
 - `users`
-- `sudo`
+- `sudoers`
 - `ssh`
 - `git`
 - `bash`
@@ -50,7 +50,7 @@ Then install the following salt states in this order using `salt-apply -s <NAME>
 - `c`
 - `cmake`
 - `shell-profile`
-- `emacs`
+- `doom-emacs`
 - `x11`
 - `xorg`
 - `rice`
@@ -64,6 +64,15 @@ At this point you should now have user accounts and a visual interface. From whi
 
 # Tips and Tricks
 Some helper ideas that will improve ease of setup:
+
+## Update Pacman Keys
+If using an old Archlinux ISO the GPG keys distributed on the ISO which are used to verify package signatures may be out of date (You will know for example if `pacstrap` will fail with GPG key errors).
+
+To update them:
+
+```bash
+pacman -Sy archlinux-keyring
+```
 
 ## Make An Initial SSH Key
 It is a lot easier to clone down the Linux Install repo if you have an SSH key (so the secrets/ submodule can be cloned too).
@@ -91,6 +100,19 @@ Be sure to delete it from GitHub after you have bootstrapped.
 
 ## Keyboard Dropping Or Repeating Keys
 Sometimes when booting into the live installation ISO your keyboard will act weird. My hypothesis is at boot time the keyboard was registered using a more primitive driver. To fix this: after you have booted into the live install ISO simply disconnect and reconnect your keyboard. This may help the system register the keyboard with a more correct driver.
+
+## Enabling Networking Connections On Systemd
+To get networking temporarily working over ethernet:
+
+1. Make a file named `/etc/systemd/network/20-wired.network`:
+   ```
+   [Match]
+   Name=en*
+
+   [Network]
+   DHCP=yes
+   ```
+2. Start the `systemd-networkd` and `systemd-resolved` services
 
 ## Manual Hacks
 Some user guide information about manual settings which might need to be changed can be found in [`USER-PROGRAMS-HELP.md`](./USER-PROGRAMS-HELP.md).

@@ -135,7 +135,7 @@ build_prompt() {
     
     # If a dumb terminal (ex., Emacs TRAMP) then don't do anything fancy
     if is_dumb; then
-	   export PS1="%# "
+	   export PS1="\W\$"
 	   return
     fi
     

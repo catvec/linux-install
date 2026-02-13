@@ -61,6 +61,14 @@ color_fg_red() {
     color_tput setaf 1
 }
 
+color_fg_cyan() {
+    color_tput setaf 6
+}
+
+color_fg_pink() {
+    color_tput setaf 13
+}
+
 shell-no-color() {
     color_reset
     
@@ -82,7 +90,7 @@ shell-no-color() {
 # like this one.
 exit_status_prompt() { # ( Exit status )
     if [[ "$1" != "0" ]]; then
-	   echo "$(color_fg_red)$1$(color_reset) "
+	   echo "$(color_fg_pink)$1$(color_reset) "
     fi
 }
 
@@ -123,9 +131,8 @@ build_prompt() {
 	   return
     fi
     
-    # EXIT_STATUS HOSTNAME PATH git:BRANCH %#
-    export PS1="[$(exit_status_prompt $last_cmd_exit_status)\h \W] $(user_symbol) "
-    #export PS1="$(exit_status_prompt $last_cmd_exit_status)$(pwd_prompt) $(git_prompt) $(color_fg_white)${newline_end}$(user_symbol) "
+    # EXIT_STATUS HOSTNAME PATH %# in cyberpunk purple/blue/cyan
+    export PS1="$(color_fg_magenta)[$(color_reset)$(exit_status_prompt $last_cmd_exit_status)$(color_fg_cyan)\h $(color_fg_blue)\W$(color_fg_magenta)]$(color_reset) $(color_fg_magenta)$(user_symbol)$(color_reset) "
 }
 
 source {{ pillar.bash.preexec.file }}

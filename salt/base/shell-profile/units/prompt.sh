@@ -111,6 +111,14 @@ git_prompt() {
 	fi
 }
 
+# Prints venv name to prompt if in a virtual environment
+venv_prompt() {
+	if [ -n "$VIRTUAL_ENV" ]; then
+	    venv_name=$(basename "$VIRTUAL_ENV")
+	    echo " $(color_fg_cyan)($venv_name)$(color_reset)"
+	fi
+}
+
 user_symbol() {
     if [ "$UID" -eq 0 ]; then
 	   echo "#"
@@ -131,8 +139,8 @@ build_prompt() {
 	   return
     fi
     
-    # EXIT_STATUS HOSTNAME PATH %# in cyberpunk purple/blue/cyan
-    export PS1="$(color_fg_magenta)[$(color_reset)$(exit_status_prompt $last_cmd_exit_status)$(color_fg_cyan)\h $(color_fg_blue)\W$(color_fg_magenta)]$(color_reset) $(color_fg_magenta)$(user_symbol)$(color_reset) "
+    # EXIT_STATUS HOSTNAME PATH (VENV) %# in cyberpunk purple/blue/cyan
+    export PS1="$(color_fg_magenta)[$(color_reset)$(exit_status_prompt $last_cmd_exit_status)$(color_fg_cyan)\h $(color_fg_blue)\W$(venv_prompt)$(color_fg_magenta)]$(color_reset) $(color_fg_magenta)$(user_symbol)$(color_reset) "
 }
 
 source {{ pillar.bash.preexec.file }}

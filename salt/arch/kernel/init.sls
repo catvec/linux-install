@@ -9,9 +9,10 @@ kernel_pkg:
     - source: salt://kernel/modprobe.d/
     - clean: True
 
-{{ pillar.kernel.mkinitcpio_conf }}:
+{{ pillar.kernel.mkinitcpio.conf_path }}:
   file.managed:
     - source: salt://kernel/mkinitcpio.conf
+    - template: jinja
 
 {{ pillar.kernel.vconsole_conf_file }}:
   file.managed:

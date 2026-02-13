@@ -461,6 +461,7 @@ arch:
     - python
     - pyenv
     - pipenv
+    - openmpi
     #- aws-cli
     #- gcloud-cli
     #- helm

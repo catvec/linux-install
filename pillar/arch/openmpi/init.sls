@@ -1,0 +1,3 @@
+openmpi:
+  multipkgs:
+    - pkg: openmpi

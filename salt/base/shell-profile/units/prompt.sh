@@ -1,7 +1,7 @@
 # Customizes the Zsh prompt
 
 # Default to supershort being enabled
-SHELL_PROFILE_PROMPT_SUPERSHORT=true
+SHELL_PROFILE_PROMPT_SUPERSHORT=
 
 is_dumb() {
     if [[ "$TERM" == "dumb" ]]; then
@@ -39,6 +39,8 @@ color_bg_default() {
     color_tput setab 245
 }
 
+
+
 color_fg_white() {
     color_tput setaf 255
 }
@@ -57,10 +59,6 @@ color_fg_magenta() {
 
 color_fg_red() {
     color_tput setaf 1
-}
-
-icon_kubernetes() {
-    echo -e '\Uf10fe'
 }
 
 shell-no-color() {
@@ -84,7 +82,7 @@ shell-no-color() {
 # like this one.
 exit_status_prompt() { # ( Exit status )
     if [[ "$1" != "0" ]]; then
-	   echo "$(color_bg_red)$1$(color_bg_default) "
+	   echo "$(color_fg_red)$1$(color_reset) "
     fi
 }
 
@@ -105,71 +103,6 @@ git_prompt() {
 	fi
 }
 
-## Escapes paths for use in sed
-escape_path() { # ( PATH )
-    echo "$1" | sed 's/\//\\\//g'
-}
-
-## Replaces pieces of path with shortcut name
-shortcut_path() { # STDIN, ( FIND, REPLACE )
-    sed_str="s/$(escape_path $1)/$(escape_path $2)/g"
-    cat - | sed "$sed_str"
-}
-
-## Shows PWD with shortcuts to make shorter.
-# Ensures the prompt is never longer than MAX_PROMPT_PWD_LEN. If the PWD does have
-# to be trimmed then the first 2 root directories are shown and then the 
-# current directory. If SHELL_PROFILE_PROMPT_SUPERSHORT is set only the exit status,
-# current directory, and git branch are shown.
-pwd_prompt() {
-    d=""
-    
-    # Shorten if in supershort mode
-    if [ -n "$SHELL_PROFILE_PROMPT_SUPERSHORT" ]; then
-	   d="${PWD##*/}"
-    else # Normal prompt mode
-	   # Apply nicknames to the path
-	   d="$PWD"
-	   d=$(echo "$d" | shortcut_path "/etc/linux-install" "[li]")
-	   d=$(echo "$d" | shortcut_path "$HOME/documents/work/red-hat" "~/[red-hat]")
-	   d=$(echo "$d" | shortcut_path "$HOME/documents/work/cambrio" "~/[cambrio]")
-	   d=$(echo "$d" | shortcut_path "$HOME/documents/school" "~/[school]")
-	   d=$(echo "$d" | shortcut_path "$HOME/documents" "~/[docs]")
-	   d=$(echo "$d" | shortcut_path "$GOPATH/src/github.com" "~/[go]/[srcgh]")
-	   d=$(echo "$d" | shortcut_path "$GOPATH" "~/[go]")
-	   d=$(echo "$d" | shortcut_path "$HOME" "~")
-    fi
-    
-    echo "$(color_fg_red)$d"
-}
-
-kubectx_prompt() {
-    # Check kubeconfig exists
-    kubeconfig="$KUBECONFIG"
-    if [[ -z "$kubeconfig" ]]; then
-       # Default location
-       kubeconfig="$HOME/.kube/config"
-    fi
-
-    if ! [[ -f "$kubeconfig" ]]; then
-       # Doesn't exist
-       return
-    fi
-
-    # Get namespace
-    kubectx_ns=$(kubens - 2>&1 | sed 's/.*"\(.*\)"/\1/g')
-    if (( $? != 0 )); then
-       return
-    fi
-
-    if [[ "$kubectx_ns" == "default" ]]; then
-       # Nothing special
-       return
-    fi
-
-    echo "$(color_fg_blue) ($(icon_kubernetes) ${kubectx_ns}) $(color_reset)"
-}
-
 user_symbol() {
     if [ "$UID" -eq 0 ]; then
 	   echo "#"
@@ -180,23 +113,19 @@ user_symbol() {
 
 # Sets prompt variable
 build_prompt() {
-    # If a dumb terminal (ex., Emacs TRAMP) then don't do anyhting fancy
+    # Capture the last cmd's exit status before we run internal prompt building
+    # functions. This will be passed to exit_status_prompt()
+    last_cmd_exit_status="$?"
+    
+    # If a dumb terminal (ex., Emacs TRAMP) then don't do anything fancy
     if is_dumb; then
 	   export PS1="%# "
 	   return
     fi
     
-    # Capture the last cmd's exit status before we run internal prompt building
-    # functions. This will be passed to exit_status_prompt()
-    last_cmd_exit_status="$?"
-
-    newline_end=""
-    if [ -n "$SHELL_PROFILE_PROMPT_SUPERSHORT" ]; then
-	   newline_end="\n"
-    fi
-    
     # EXIT_STATUS HOSTNAME PATH git:BRANCH %#
-    export PS1="$(exit_status_prompt $last_cmd_exit_status)$(pwd_prompt) $(git_prompt) $(color_fg_white)${newline_end}$(user_symbol) "
+    export PS1="[$(exit_status_prompt $last_cmd_exit_status)\h \W] $(user_symbol) "
+    #export PS1="$(exit_status_prompt $last_cmd_exit_status)$(pwd_prompt) $(git_prompt) $(color_fg_white)${newline_end}$(user_symbol) "
 }
 
 source {{ pillar.bash.preexec.file }}
@@ -209,15 +138,3 @@ precmd() {
 }
 build_prompt
 
-# Toggle SHELL_PROFILE_PROMPT_SUPERSHORT and rebuild the
-# prompt. So that the prompt is way shorter.
-supershort() {
-    if [ -z "$SHELL_PROFILE_PROMPT_SUPERSHORT" ]; then
-	   SHELL_PROFILE_PROMPT_SUPERSHORT=true
-    else
-	   SHELL_PROFILE_PROMPT_SUPERSHORT=""
-    fi
-
-    build_prompt
-    echo "SHELL_PROFILE_PROMPT_SUPERSHORT=${SHELL_PROFILE_PROMPT_SUPERSHORT}"
-}

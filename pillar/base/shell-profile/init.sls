@@ -54,3 +54,4 @@ shell_profile:
     - startx
     - start_wayland
     - doom_emacs
+    - amd_rocm_path

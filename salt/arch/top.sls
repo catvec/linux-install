@@ -405,6 +405,7 @@ arch:
   'benito':
     # Base system configuration
     - amdgpu
+    - amd-rocm
     
     # General tools configuration
     - gpg

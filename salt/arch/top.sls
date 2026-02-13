@@ -311,6 +311,7 @@ arch:
     - gemini-cli
     - claude-code
     #- qwen-code
+    - opencode
     #- vagrant
     #- mkcert
     #- libfreenect

@@ -140,7 +140,7 @@ build_prompt() {
     fi
     
     # EXIT_STATUS HOSTNAME PATH (VENV) %# in cyberpunk purple/blue/cyan
-    export PS1="$(color_fg_magenta)[$(color_reset)$(exit_status_prompt $last_cmd_exit_status)$(color_fg_cyan)\h $(color_fg_blue)\W$(venv_prompt)$(color_fg_magenta)]$(color_reset) $(color_fg_magenta)$(user_symbol)$(color_reset) "
+    export PS1="$(color_fg_magenta)[$(color_reset)$(exit_status_prompt $last_cmd_exit_status)$(color_fg_cyan)\h $(color_fg_blue)\W$(color_fg_magenta)]$(venv_prompt)$(color_reset) $(color_fg_magenta)$(user_symbol)$(color_reset) "
 }
 
 source {{ pillar.bash.preexec.file }}

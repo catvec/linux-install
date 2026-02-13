@@ -66,6 +66,7 @@ arch:
     - shellcheck
     - screen
     - kubectl
+    - kustomize
     #- ncdu
     - containers
     - go
@@ -247,6 +248,7 @@ arch:
     - telnet
     - rsync
     - unzip
+    - steam-locomotive
 
     # Development environment configuration
     - ssh

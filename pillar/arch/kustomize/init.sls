@@ -1,0 +1,3 @@
+kustomize:
+  multipkgs:
+    - pkg: kustomize

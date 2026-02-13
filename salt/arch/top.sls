@@ -265,13 +265,14 @@ arch:
     #- uv
     #- shellcheck
     - screen
-    #- kubectl
+    - kubectl
+    - kustomize
     - ncdu
     - containers
     #- go
     - nodejs
     #- flutter
-    #- terraform
+    - terraform
     #- tflint
     #- infracost
     #- software-defined-radio

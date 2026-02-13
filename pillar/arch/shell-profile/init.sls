@@ -16,7 +16,7 @@ shell_profile:
     - xdg_config_home
     - ssh_agent
     # - history # Not need for ans
-    # - go
+    - go
     # - rust
     # - deno
     - godot

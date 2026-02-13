@@ -1,6 +1,6 @@
 [user]
 	name = Noah Huppert
-	email = {{ pillar.git.emails.noah }}
+	email = {{ pillar.git.email.noah.email }}
 	signingkey = {{ pillar.gpg.user_keys.noah }}
 [alias]
 	a = add .
@@ -17,9 +17,23 @@
 	pula = pull origin main
 	co = checkout
 	b = branch
+[init]
+    defaultBranch = main
 [push]
 	default = current
 [gpg]
 	program = gpg2
 [commit]
     gpgsign = true
+[sendemail]
+    annotate = true
+    compose = true
+    thread = true
+    #chainReplyTo = true
+
+    smtpserver = {{ pillar.git.email.noah.smtp.server }}
+    smtpuser = {{ pillar.git.email.noah.smtp.user }}
+    smtpencryption = {{ pillar.git.email.noah.smtp.encryption }}
+    smtpserverport = {{ pillar.git.email.noah.smtp.port }}
+[credential]
+    credentialStore = secretservice

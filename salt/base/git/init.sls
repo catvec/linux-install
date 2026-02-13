@@ -2,8 +2,8 @@
 
 # Package
 git_pkgs:
-  pkg.latest:
-    - pkgs: {{ pillar.git.pkgs }}
+  multipkg.installed:
+    - pkgs: {{ pillar.git.multipkgs }}
 
 # User configuration
 /home/noah/.gitconfig:

@@ -1,3 +1,3 @@
 git:
-  pkgs:
-    - dev-vcs/git
+  multipkgs:
+    - pkg: dev-vcs/git

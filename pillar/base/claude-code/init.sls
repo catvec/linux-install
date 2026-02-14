@@ -6,3 +6,4 @@ claude_code:
 
   # Installed claude code binary file relative to user home directory
   user_install_file: .local/bin/claude
+  user_settings_file: .claude/settings.json

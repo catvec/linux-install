@@ -1,0 +1,3 @@
+bun:
+  multipkgs:
+    - pkg: bun

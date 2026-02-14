@@ -71,6 +71,7 @@ arch:
     - containers
     - go
     - nodejs
+    - bun
     - flutter
     - terraform
     - tflint
@@ -271,6 +272,7 @@ arch:
     - containers
     #- go
     - nodejs
+    - bun
     #- flutter
     - terraform
     #- tflint
@@ -449,6 +451,7 @@ arch:
     - containers
     #- go
     - nodejs
+    - bun
     #- flutter
     #- terraform
     #- tflint

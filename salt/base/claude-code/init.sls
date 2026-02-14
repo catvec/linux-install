@@ -15,13 +15,12 @@ install_claude_code_{{ user['name'] }}:
     - require:
       - file: {{ pillar.claude_code.installer_file }}
 
-install_google_search_mcp_{{ user['name'] }}:
+install_brave_search_mcp_{{ user['name'] }}:
   cmd.run:
     - name: |
-        claude mcp add --transport stdio google-search --scope user \
-            --env "GOOGLE_API_KEY={{ pillar.claude_code.mcp.google_search.api_key }}" \
-            --env "GOOGLE_SEARCH_ENGINE_ID={{ pillar.claude_code.mcp.google_search.engine_id }}" \
-            -- npx -y @adenot/mcp-google-search
+        claude mcp add --transport stdio brave-search --scope user \
+            --env BRAVE_API_KEY={{ pillar.claude_code.mcp.brave_search.api_key }} \
+            -- npx -y @modelcontextprotocol/server-brave-search
     - runas: {{ user['name'] }}
     - unless: cat ~/.claude.json | grep google-search
     - require:

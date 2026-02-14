@@ -7,9 +7,8 @@ opencode_pkgs:
 {{ user['home'] }}/{{ pillar.opencode.user_settings_file }}:
   file.managed:
     - makedirs: True
-    - source: salt://opencode/.opencode.json
+    - source: salt://opencode/opencode.json
     - template: jinja
-    - replace: False
     - user: {{ user.name }}
     - group: {{ user.name }}
     - require:

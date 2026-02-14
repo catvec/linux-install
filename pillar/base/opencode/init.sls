@@ -1,6 +1,5 @@
 opencode:
   multipkgs: []
 
-  user_settings_file: .opencode.json
-  endpoint: "http://benito:8001"
-  api_key: "ollama"
+  user_settings_file: .config/opencode/opencode.json
+  base_url: "http://benito:8001/v1"

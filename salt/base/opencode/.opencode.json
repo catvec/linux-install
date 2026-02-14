@@ -1,8 +1,0 @@
-{
-  "providers": {
-    "anthropic": {
-      "endpoint": "{{ pillar['opencode']['endpoint'] }}",
-      "apiKey": "{{ pillar['opencode']['api_key'] }}"
-    }
-  }
-}

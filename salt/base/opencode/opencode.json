@@ -1,5 +1,10 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "edit": "ask",
+    "write": "ask",
+    "bash": "ask"
+  },
   "plugin": [
     "opencode-plugin-llama.cpp@latest"
   ],
@@ -9,6 +14,15 @@
       "name": "llama.cpp (local)",
       "options": {
         "baseURL": "{{ pillar.opencode.base_url }}"
+      }
+    }
+  },
+  "mcp": {
+    "brave-search": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-brave-search"],
+      "environment": {
+        "BRAVE_API_KEY": "{{ pillar.opencode.mcp.brave_search.api_key }}"
       }
     }
   }

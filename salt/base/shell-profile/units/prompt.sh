@@ -21,9 +21,15 @@ is_no_color() {
 
 # Colors
 # From: https://stackoverflow.com/a/20983251
+# ANSI escape codes are wrapped with \[ and \] so bash/zsh know they don't
+# consume screen space (prevents line wrapping issues)
 color_tput() { # ( args... )
     if ! is_no_color; then
-	   tput "$@"
+	   local code
+	   code=$(tput "$@" 2>/dev/null)
+	   if [[ -n "$code" ]]; then
+	       printf '\[%s\]' "$code"
+	   fi
     fi
 }
 

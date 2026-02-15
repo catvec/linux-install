@@ -8,6 +8,8 @@ screen_pkgs:
   file.managed:
     - name: {{ user['home'] }}/{{ pillar.screen.home_relative_screenrc_path }}
     - source: salt://screen/screenrc
+    - user: {{ user['name'] }}
+    - group: {{ user['name'] }}
     - require:
         - pkg: screen_pkgs
 {% endfor %}

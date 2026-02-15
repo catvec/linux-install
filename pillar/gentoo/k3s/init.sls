@@ -1,6 +1,6 @@
 k3s:
-  pkgs:
-    - sys-cluster/k3s
+  multipkgs:
+    - pkg: sys-cluster/k3s
 
   svc:
     source: k3s.override.service

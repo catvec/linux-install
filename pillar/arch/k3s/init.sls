@@ -1,6 +1,6 @@
 k3s:
-  aur_pkgs:
-    - k3s-bin
+  multipkgs:
+    - aurpkg: k3s-bin
 
   svc:
     source: k3s.override.service

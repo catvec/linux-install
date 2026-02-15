@@ -1,7 +1,6 @@
 k3s:
   # Packages required to install k3s
-  pkgs: []
-  aur_pkgs: []
+  multipkgs: []
 
   # Service file
   svc:

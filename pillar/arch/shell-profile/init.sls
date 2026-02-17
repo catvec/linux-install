@@ -26,7 +26,7 @@ shell_profile:
     - ls_color
     - shell_reload_fn
     - user_bin
-    #- scripts_fns
+    - scripts_fns
     # - org_mode
     - trash
     - edit_alias

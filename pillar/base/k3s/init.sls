@@ -15,5 +15,9 @@ k3s:
       url: https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
       sha: 943ae40251f1ba64ef012c53271bf6766d1883dd024093e854567b56443764b8
 
+  # TLS SANs for the API server certificate
+  # Add Tailscale IPs or hostnames here for proper certificate validation
+  tls_san: []
+
   # Configuration file
   config_file: /etc/rancher/k3s/config.yaml

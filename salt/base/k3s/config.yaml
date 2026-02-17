@@ -1,1 +1,6 @@
+{% if pillar.k3s.tls_san %}
+{% for san in pillar.k3s.tls_san %}
+tls-san: {{ san }}
+{% endfor %}
+{% endif %}
 write-kubeconfig-mode: "0644"

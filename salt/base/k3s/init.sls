@@ -25,6 +25,7 @@ k3s_pkgs:
 {{ pillar.k3s.config_file }}:
   file.managed:
     - source: salt://k3s/config.yaml
+    - template: jinja
     - makedirs: True
     - require:
       - multipkg: k3s_pkgs

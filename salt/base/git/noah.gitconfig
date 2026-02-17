@@ -26,7 +26,6 @@
 [commit]
     gpgsign = true
 [sendemail]
-    annotate = true
     compose = true
     thread = true
     #chainReplyTo = true

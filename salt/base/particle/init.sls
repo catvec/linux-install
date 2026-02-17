@@ -3,7 +3,7 @@
 # CLI
 {{ pillar.particle.cli.repo }}:
   git.cloned:
-    - user: noah
+    - user: {{ pillar.ssh.default_ssh_user }}
     - target: {{ pillar.particle.cli.dir }}
 
 {{ pillar.particle.cli.link.name }}:

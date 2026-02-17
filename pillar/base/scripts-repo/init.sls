@@ -3,4 +3,8 @@ scripts_repo:
   repository: git@github.com:Noah-Huppert/scripts.git
 
   # Clone directory
-  directory: /home/noah/bin/scripts
+  home_relative_dir: .local/bin/scripts
+
+  # Dict keys of users in pillar.users.users for which to clone down script
+  users:
+    - noah

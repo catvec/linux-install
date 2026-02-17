@@ -131,6 +131,7 @@ arch:
     - tree
     - cables
     - firebase
+    - scripts-repo
 
     # General tools configuration
     - gpg

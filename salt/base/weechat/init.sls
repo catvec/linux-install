@@ -4,7 +4,7 @@
 {{ pillar.weechat.configuration_repo }}:
   git.cloned:
     - target: {{ pillar.weechat.configuration_directory }}
-    - user: noah
+    - user: {{ pillar.ssh.default_ssh_user }}
 
 # Install
 {% for pkg in pillar['weechat']['pkgs'] %}

@@ -119,6 +119,7 @@ arch:
     - nx
     - gemini-cli
     - claude-code
+    - agent-skills
     - qwen-code
     - vagrant
     - mkcert
@@ -312,6 +313,7 @@ arch:
     #- nx
     - gemini-cli
     - claude-code
+    - agent-skills
     #- qwen-code
     - opencode
     #- vagrant
@@ -492,6 +494,7 @@ arch:
     - gemini-cli
     - claude-code
     - qwen-code
+    - agent-skills
     #- vagrant
     #- mkcert
     #- libfreenect

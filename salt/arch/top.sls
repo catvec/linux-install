@@ -546,8 +546,8 @@ arch:
     - file-manager
     #- ngrok
     #- inkscape
-    #- vlc
-    #- mpv
+    - vlc
+    - mpv
     #- anki
     #- qgis
     #- jetbrains

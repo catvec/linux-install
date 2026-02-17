@@ -14,10 +14,20 @@
       "name": "llama.cpp (local)",
       "options": {
         "baseURL": "{{ pillar.opencode.base_url }}"
+      },
+      "models": {
+        "qwen3-coder-next-q4-k-xl": {
+          "name": "Qwen3 Coder Next Q6 K XL",
+          "limit": {
+            "context": 262144,
+            "output": 65536
+          }
+        }
       }
     }
   },
   "mcp": {
+    {% if pillar['opencode']['mcp']['brave_search']['enabled'] %}
     "brave-search": {
       "type": "local",
       "command": ["npx", "-y", "@modelcontextprotocol/server-brave-search"],
@@ -25,5 +35,6 @@
         "BRAVE_API_KEY": "{{ pillar.opencode.mcp.brave_search.api_key }}"
       }
     }
+    {% endif %}
   }
 }

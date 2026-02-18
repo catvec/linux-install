@@ -23,6 +23,7 @@ k3s:
 
   # TLS SANs for the API server certificate
   # Add Tailscale IPs or hostnames here for proper certificate validation
+  # To change, stop the service, run k3s certificate rotate api-server
   tls_san: []
 
   # Configuration file

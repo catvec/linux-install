@@ -29,7 +29,6 @@ salt_configuration:
   pillar_dirs:
     base:
       public: {{ content_root }}/pillar/base
-      secret: {{ content_root }}/pillar/base-secret
     void:
       public: {{ content_root }}/pillar/void
     gentoo:

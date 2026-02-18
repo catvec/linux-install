@@ -28,6 +28,7 @@ salt_state_links=(
 salt_pillar_links=(
     "$repo_dir/secrets/pillar/base:$salt_content_dir/pillar/base-secret"
     "$repo_dir/secrets/pillar/gentoo:$salt_content_dir/pillar/gentoo-secret"
+    "$repo_dir/secrets/pillar/arch:$salt_content_dir/pillar/arch-secret"
 )
 
 # Explore the salt directory to find environments and add those links to salt_state_links
@@ -36,10 +37,10 @@ discover_salt_state_links() {
     check "Failed to search salt directory for environments"
 
     while IFS= read -r dir; do
-	env_name=$(basename "$dir")
-	check "Failed to convert directory into environment name"
+        env_name=$(basename "$dir")
+        check "Failed to convert directory into environment name"
 
-	salt_state_links+=("$repo_dir/salt/$env_name:$salt_content_dir/salt/$env_name")
+        salt_state_links+=("$repo_dir/salt/$env_name:$salt_content_dir/salt/$env_name")
     done <<< "$find_out"
 }
 
@@ -49,10 +50,10 @@ discover_salt_pillar_links() {
     check "Failed to search pillar directory for environments"
 
     while IFS= read -r dir; do
-	env_name=$(basename "$dir")
-	check "Failed to convert directory into environment name"
+        env_name=$(basename "$dir")
+        check "Failed to convert directory into environment name"
 
-	salt_pillar_links+=("$repo_dir/pillar/$env_name:$salt_content_dir/pillar/$env_name")
+        salt_pillar_links+=("$repo_dir/pillar/$env_name:$salt_content_dir/pillar/$env_name")
     done <<< "$find_out"
 }
 

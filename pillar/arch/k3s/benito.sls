@@ -1,3 +1,3 @@
 k3s:
   tls_san:
-    - benito.slavetail.ts.net
+    - benito.noahhuppert.ts.net

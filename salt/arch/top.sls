@@ -539,7 +539,7 @@ arch:
     - discord
     #- openvpn
     #- qbittorrent
-    #- k3s
+    - k3s
     #- gnucash
     #- youtube-dl
     #- open-broadcaster-software

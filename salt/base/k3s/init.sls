@@ -11,16 +11,16 @@ k3s_pkgs:
     - require:
       - multipkg: k3s_pkgs
 
-{{ pillar.k3s.auto_deploy_manifests_dir }}:
-  file.recurse:
-    - source: salt://k3s/manifests
+# {{ pillar.k3s.auto_deploy_manifests_dir }}:
+#   file.recurse:
+#     - source: salt://k3s/manifests
 
-{% for remote in pillar['k3s']['remote_manifests'] %}
-{{ pillar.k3s.auto_deploy_manifests_dir }}/{{ remote.file }}:
-  file.managed:
-    - source: {{ remote.url }}
-    - source_hash: {{ remote.sha }}
-{% endfor %}
+# {% for remote in pillar['k3s']['remote_manifests'] %}
+# {{ pillar.k3s.auto_deploy_manifests_dir }}/{{ remote.file }}:
+#   file.managed:
+#     - source: {{ remote.url }}
+#     - source_hash: {{ remote.sha }}
+# {% endfor %}
 
 {{ pillar.k3s.config_file }}:
   file.managed:
@@ -29,3 +29,13 @@ k3s_pkgs:
     - makedirs: True
     - require:
       - multipkg: k3s_pkgs
+
+{% if pillar['k3s']['svc']['enable_start'] %}
+{{ pillar.k3s.svc.name }}:
+  svc.running:
+    - enable: true
+    - require:
+      - multipkg: k3s_pkgs
+      - file: {{ pillar.k3s.svc.install }}
+      - file: {{ pillar.k3s.config_file }}
+{% endif %}

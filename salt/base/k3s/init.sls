@@ -32,7 +32,7 @@ k3s_pkgs:
 
 {% if pillar['k3s']['svc']['enable_start'] %}
 {{ pillar.k3s.svc.name }}:
-  svc.running:
+  service.running:
     - enable: true
     - require:
       - multipkg: k3s_pkgs

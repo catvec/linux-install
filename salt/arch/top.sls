@@ -449,7 +449,8 @@ arch:
     - uv
     #- shellcheck
     - screen
-    #- kubectl
+    - kubectl
+    - kustomize
     - ncdu
     - containers
     #- go

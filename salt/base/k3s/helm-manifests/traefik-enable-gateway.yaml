@@ -6,6 +6,7 @@ metadata:
 spec:
   valuesContent: |-
     image:
+      repository: traefik
       tag: 3.6.8
       
     providers:

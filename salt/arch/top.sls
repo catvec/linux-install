@@ -290,7 +290,7 @@ arch:
     - pipenv
     #- aws-cli
     #- gcloud-cli
-    #- helm
+    - helm
     #- eksctl
     - java
     #- android-sdk

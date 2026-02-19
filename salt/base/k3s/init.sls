@@ -35,6 +35,6 @@ k3s_pkgs:
     - enable: true
     - require:
       - multipkg: k3s_pkgs
-      - file: {{ pillar.k3s.svc.install }}
+      - file: {{ pillar.k3s.svc.kill_all_override_install }}
       - file: {{ pillar.k3s.config_file }}
 {% endif %}

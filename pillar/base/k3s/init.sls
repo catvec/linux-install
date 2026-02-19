@@ -4,23 +4,14 @@ k3s:
 
   # Service file
   svc:
-    # Relative to k3s salt dir
-    source: k3s.override.service
-    install: /etc/systemd/system/k3s.service.d/override.conf
-
     name: k3s
 
     enable_start: false
-
-
-  # # Directory in which K8s manifests can be saved and which k3s will auto-deploy
-  # DISABLED FOR NOW
-  auto_deploy_manifests_dir: /var/lib/rancher/k3s/server/manifests
-  remote_manifests:
-    - file: k8s-dashboard.yaml
-      url: https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
-      sha: 943ae40251f1ba64ef012c53271bf6766d1883dd024093e854567b56443764b8
-
+    
+    # This custom service override stops all containers when the service exits (useful for running k3s as a local test cluster, not useful for running k3s in production)
+    kill_all_override_enabled: false
+    kill_all_override_install: /etc/systemd/system/k3s.service.d/override.conf
+  
   # TLS SANs for the API server certificate
   # Add Tailscale IPs or hostnames here for proper certificate validation
   # To change, stop the service, run k3s certificate rotate api-server
@@ -28,3 +19,6 @@ k3s:
 
   # Configuration file
   config_file: /etc/rancher/k3s/config.yaml
+
+  # Helm override dir
+  helm_override_dir: /var/lib/rancher/k3s/server/manifests/

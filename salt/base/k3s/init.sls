@@ -1,27 +1,26 @@
 # Installs and configures K3S to run services locally
 
+# Install
 k3s_pkgs:
   multipkg.installed:
     - pkgs: {{ pillar.k3s.multipkgs }}
 
-{{ pillar.k3s.svc.install }}:
+# Custom service file which stops containers
+{% if pillar['svc']['kill_all_overriden_enabled'] %}
+{{ pillar.k3s.svc.kill_all_override_install }}:
   file.managed:
-    - source: salt://k3s/{{ pillar.k3s.svc.source }}
+    - source: salt://k3s/k3s.override.service
     - makedirs: True
     - require:
       - multipkg: k3s_pkgs
+{% endif %}
 
-# {{ pillar.k3s.auto_deploy_manifests_dir }}:
-#   file.recurse:
-#     - source: salt://k3s/manifests
+# Manifest files
+{{ pillar.k3s.helm_override_dir }}:
+  file.recurse:
+    - source: salt://k3s/helm-manifests
 
-# {% for remote in pillar['k3s']['remote_manifests'] %}
-# {{ pillar.k3s.auto_deploy_manifests_dir }}/{{ remote.file }}:
-#   file.managed:
-#     - source: {{ remote.url }}
-#     - source_hash: {{ remote.sha }}
-# {% endfor %}
-
+# Start service
 {{ pillar.k3s.config_file }}:
   file.managed:
     - source: salt://k3s/config.yaml

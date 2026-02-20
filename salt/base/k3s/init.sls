@@ -19,6 +19,7 @@ k3s_pkgs:
 {{ pillar.k3s.helm_override_dir }}:
   file.recurse:
     - source: salt://k3s/helm-manifests
+    - template: jinja
 
 # Start service
 {{ pillar.k3s.config_file }}:

@@ -6,10 +6,10 @@ k3s_pkgs:
     - pkgs: {{ pillar.k3s.multipkgs }}
 
 # Custom service file which stops containers
-{% if pillar['k3s']['svc']['kill_all_override_enabled'] %}
-{{ pillar.k3s.svc.kill_all_override_install }}:
+{% if pillar['k3s']['svc']['kill_all']['override_enabled'] %}
+{{ pillar.k3s.svc.kill_all.override_install }}:
   file.managed:
-    - source: salt://k3s/k3s.override.service
+    - source: salt://k3s/k3s.service.d/kill-all-override.conf
     - makedirs: True
     - require:
       - multipkg: k3s_pkgs
@@ -36,8 +36,8 @@ k3s_pkgs:
     - enable: true
     - require:
       - multipkg: k3s_pkgs
-      {% if pillar['k3s']['svc']['kill_all_override_enabled'] %}
-      - file: {{ pillar.k3s.svc.kill_all_override_install }}
+      {% if pillar['k3s']['svc']['kill_all']['override_enabled'] %}
+      - file: {{ pillar.k3s.svc.kill_all.override_install }}
       {% endif %}
       - file: {{ pillar.k3s.config_file }}
 {% endif %}

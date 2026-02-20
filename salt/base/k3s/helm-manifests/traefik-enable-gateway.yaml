@@ -13,16 +13,47 @@ spec:
       kubernetesGateway:
         enabled: true
 
+    # https://github.com/traefik/traefik-helm-chart/blob/6d45b7500461e118bc475d8263a16de5f36fde68/traefik/values.yaml#L811
     ports:
+      # HTTP
       web:
-        port: 80
+        port: 8000
+        expose:
+          default: true
+        exposedPort: 80
+        protocol: TCP
+        
       websecure:
-        port: 443
+        port: 8443
+        expose:
+          default: true
+        exposedPort: 443
+        protocol: TCP
+
+      # DNS
       dns-udp:
-        port: 53
+        port: 8053
+        expose:
+          default: true
+        exposePort: 53
         protocol: UDP
+        
       dns-tcp:
-        port: 53
+        port: 8053
+        expose:
+          default: true
+        exposePort: 53
+        protocol: TCP
+
+      # Internal
+      traefik:
+        port: 8080
+        expose:
+          default: false
+      metrics:
+        port: 9100
+        expose:
+          default: false
         protocol: TCP
 
     service:

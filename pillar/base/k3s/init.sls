@@ -24,4 +24,4 @@ k3s:
   helm_override_dir: /var/lib/rancher/k3s/server/manifests/
 
   # If provided configures which IPs Traefik gateway class binds to
-  external_ips: []
+  load_balancer_ip: null

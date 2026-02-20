@@ -54,9 +54,6 @@ spec:
 
     service:
       type: LoadBalancer
-      {% if pillar['k3s']['external_ips'] %}
-      externalIPs:
-        {% for ip in pillar['k3s']['external_ips'] %}
-        - {{ ip }}
-        {% endfor %}
+      {% if pillar['k3s']['load_balancer_ip'] %}
+      loadBalancerIP: {{ pillar.k3s.load_balancer_ip }}
       {% endif %}

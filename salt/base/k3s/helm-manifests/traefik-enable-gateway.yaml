@@ -12,3 +12,24 @@ spec:
     providers:
       kubernetesGateway:
         enabled: true
+
+    ports:
+      web:
+        port: 80
+      websecure:
+        port: 443
+      dns-udp:
+        port: 53
+        protocol: UDP
+      dns-tcp:
+        port: 53
+        protocol: TCP
+
+    service:
+      type: LoadBalancer
+      {% if pillar['k3s']['external_ips'] %}
+      externalIPs:
+        {% for ip in pillar['k3s']['external_ips'] %}
+        - {{ ip }}
+        {% endfor %}
+      {% endif %}

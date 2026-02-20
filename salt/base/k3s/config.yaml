@@ -5,3 +5,7 @@ tls-san:
 {% endfor %}
 {% endif %}
 write-kubeconfig-mode: "0644"
+
+{% if pillar.k3s.node_ip %}
+node-ip: {{ pillar.k3s.node_ip }}
+{% endif %}

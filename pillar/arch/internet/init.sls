@@ -16,7 +16,7 @@ internet:
   connection_profiles_dir: /etc/NetworkManager/system-connections
 
   dns:
-    use_external: true
+    use_external: false
     servers:
       - 1.1.1.1
       - 1.0.0.1

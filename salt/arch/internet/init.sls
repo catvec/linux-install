@@ -46,6 +46,10 @@ internet_pkgs:
 {{ pillar.internet.svcs.systemd_resolved }}:
   service.running:
     - enable: True
+{% else %}
+{{ pillar.internet.svcs.systemd_resolved }}:
+  service.dead:
+    - enable: False
 {% endif %}
 
 # Configure connection profiles

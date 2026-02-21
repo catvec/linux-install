@@ -10,7 +10,7 @@ internet:
 
   svcs:
     network_manager: NetworkManager.service
-    systemd_resolved: systemd-resolved
+    systemd_resolved: systemd-resolved.service
 
   wifi_interface: wlp166s0
 

@@ -14,7 +14,7 @@ internet_pkgs:
 
 # NetworkManager DNS configuration
 {% if pillar.internet.dns.use_external %}
-/etc/NetworkManager/conf.d/dns.conf:
+{{ pillar.internet.dns.conf_path }}:
   file.managed:
     - source: salt://internet/dns.conf
     - template: jinja
@@ -24,7 +24,7 @@ internet_pkgs:
     - require:
       - pkg: internet_pkgs
 {% else %}
-/etc/NetworkManager/conf.d/dns-systemd-resolved.conf:
+{{ pillar.internet.dns.systemd_resolved_conf_path }}:
   file.managed:
     - source: salt://internet/dns-systemd-resolved.conf
     - template: jinja

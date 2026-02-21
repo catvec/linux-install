@@ -12,6 +12,29 @@ internet_pkgs:
     - dir_mode: 600
     - file_mode: 600
 
+# NetworkManager DNS configuration
+{% if pillar.internet.dns.use_external %}
+/etc/NetworkManager/conf.d/dns.conf:
+  file.managed:
+    - source: salt://internet/dns.conf
+    - template: jinja
+    - user: root
+    - group: root
+    - mode: 644
+    - require:
+      - pkg: internet_pkgs
+{% else %}
+/etc/NetworkManager/conf.d/dns-systemd-resolved.conf:
+  file.managed:
+    - source: salt://internet/dns-systemd-resolved.conf
+    - template: jinja
+    - user: root
+    - group: root
+    - mode: 644
+    - require:
+      - pkg: internet_pkgs
+{% endif %}
+
 # Enable services
 {{ pillar.internet.svcs.network_manager }}:
   service.running:
@@ -19,9 +42,11 @@ internet_pkgs:
     - require:
       - pkg: internet_pkgs
 
+{% if pillar.internet.dns is not defined or not pillar.internet.dns.use_external %}
 {{ pillar.internet.svcs.systemd_resolved }}:
   service.running:
     - enable: True
+{% endif %}
 
 # Configure connection profiles
 # ... Internet 

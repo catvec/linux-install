@@ -11,6 +11,9 @@ internet:
   svcs:
     network_manager: NetworkManager.service
     systemd_resolved: systemd-resolved.service
+    systemd_resolved_sockets:
+      - systemd-resolved-monitor.socket
+      - systemd-resolved-varlink.socket
 
   wifi_interface: wlp166s0
 

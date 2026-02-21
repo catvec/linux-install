@@ -43,13 +43,28 @@ internet_pkgs:
       - pkg: internet_pkgs
 
 {% if pillar.internet.dns is not defined or not pillar.internet.dns.use_external %}
+# Using systemd-resolved - ensure service is running
 {{ pillar.internet.svcs.systemd_resolved }}:
   service.running:
     - enable: True
+{% for socket in pillar.internet.svcs.systemd_resolved_sockets %}
+# Unmask sockets when using systemd-resolved
+{{ socket }}:
+  service.masked:
+    - mask: False
+{% endfor %}
 {% else %}
+# Using external DNS - stop and mask systemd-resolved
 {{ pillar.internet.svcs.systemd_resolved }}:
   service.dead:
     - enable: False
+    - mask: True
+{% for socket in pillar.internet.svcs.systemd_resolved_sockets %}
+{{ socket }}:
+  service.dead:
+    - enable: False
+    - mask: True
+{% endfor %}
 {% endif %}
 
 # Configure connection profiles

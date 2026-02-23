@@ -17,3 +17,6 @@ spec:
             allowedRoutes:
               namespaces:
                 from: All
+
+    gateway:
+      namespacePolicy: All

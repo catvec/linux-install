@@ -12,3 +12,8 @@ spec:
     providers:
       kubernetesGateway:
         enabled: true
+        listeners:
+          web:
+            allowedRoutes:
+              namespaces:
+                from: All

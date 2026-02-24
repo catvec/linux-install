@@ -266,7 +266,7 @@ arch:
     # ... Development environments
     - gtk-dev
     #- uv
-    #- shellcheck
+    - shellcheck
     - screen
     - kubectl
     - kustomize

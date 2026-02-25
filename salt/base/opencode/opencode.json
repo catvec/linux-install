@@ -13,10 +13,11 @@
       "npm": "@ai-sdk/openai-compatible",
       "name": "llama.cpp (local)",
       "options": {
-        "baseURL": "{{ pillar.opencode.base_url }}"
+        "baseURL": "{{ pillar.opencode.base_url }}",
+        "apiKey": "{{ pillar.opencode.api_key }}"  
       },
       "models": {
-        "qwen3-coder-next-q4-k-xl": {
+        "llama-cpp/qwen3-coder-next-q6-k-xl": {
           "name": "Qwen3 Coder Next Q6 K XL",
           "limit": {
             "context": 262144,

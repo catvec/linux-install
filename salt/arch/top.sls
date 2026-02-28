@@ -412,6 +412,7 @@ arch:
     # Base system configuration
     - amdgpu
     - amd-rocm
+    - tmux
     
     # General tools configuration
     - gpg

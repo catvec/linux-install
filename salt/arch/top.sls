@@ -396,7 +396,7 @@ arch:
     #- evolution
     #- strawberry-music-organizer
     #- gpodder
-    #- libre-office
+    - libre-office
     #- vdirsyncer
     #- ollama
     #- ollama-code

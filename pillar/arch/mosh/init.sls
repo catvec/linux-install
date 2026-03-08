@@ -1,0 +1,3 @@
+mosh:
+  multipkgs:
+    - pkg: mosh

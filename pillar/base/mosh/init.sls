@@ -1,0 +1,2 @@
+mosh:
+  multipkgs: []

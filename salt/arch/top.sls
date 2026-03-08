@@ -437,6 +437,7 @@ arch:
 
     # Development environment configuration
     - ssh
+    - mosh
     - git
     - salt-apply-script
     - alacritty

@@ -30,6 +30,37 @@ Run:
    salt-call --local saltutil.sync_all
    ```
 
+# Secure Boot
+To setup secure boot:
+
+1. Ensure that [sbctl](https://github.com/Foxboron/sbctl) is installed.
+2. Reboot into secure boot "Setup mode" (this typically involves resetting or deleting all keys from secure boot in the system setup utility / BIOS like menu), see the [Arch Linux Wiki on Secure Boot setup mode](https://wiki.archlinux.org/title/Unified_Extensible_Firmware_Interface/Secure_Boot#Putting_firmware_in_%22Setup_Mode%22)
+3. Create custom secure boot keys:
+   ```bash
+   sbctl create-keys
+   ```
+3. Enroll keys:
+   ```bash
+   sbctl enroll-keys -m -f
+   ```
+   The options enable additional keys:
+   
+   - `-m`: Microsoft
+   - `-f`: Firmware builtin (Recommended for Framework devices)
+4. Sign files:
+  - See what files need to be signed:
+    ```bash
+    sbctl verify
+    ```
+  - Sign each non signed file:
+    ```bash
+    sbctl sign -s <FILE>
+    ```
+  - This can be done with a 1-liner:
+    ```bash
+    sudo sbctl verify --json | jq '.[] | select(.is_signed == 0) | .file_name' | xargs -n1 sudo sbctl sign -s
+    ```
+
 # Bootstrap A Working Environment
 From here you should be able to run `salt-call --local state.apply ...` to run any other salt states. To bootstrap the rest of the system run the following:
 

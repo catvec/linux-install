@@ -410,6 +410,7 @@ arch:
 
   'benito':
     # Base system configuration
+    - secure-boot
     - amdgpu
     - amd-rocm
     - tmux

@@ -60,6 +60,20 @@ To setup secure boot:
     ```bash
     sudo sbctl verify --json | jq '.[] | select(.is_signed == 0) | .file_name' | xargs -n1 sudo sbctl sign -s
     ```
+    
+## Auto Unlock Encrypted Partition
+If a partition was setup with LUKS encryption we can now use the TPM and secure boot to auto-unlock that partition on boot:
+
+1. Replace your manually entered key with a recovery key:
+   ```bash
+    systemd-cryptenroll ROOT_PARTITION --recovery-key
+   ```
+2. Enroll the key into the TPM:
+   ```bash
+   systemd-cryptenroll ROOT_PARTITION --wipe-slot=empty --tpm2-device=auto --tpm2-pcrs=7+15:sha256=0000000000000000000000000000000000000000000000000000000000000000
+   ```
+
+Now as long as the boot chain is not tampered with (aka is all signed) the TPM will automatically release this key from the second step for systemd to unlock your encrypted partition.
 
 # Bootstrap A Working Environment
 From here you should be able to run `salt-call --local state.apply ...` to run any other salt states. To bootstrap the rest of the system run the following:

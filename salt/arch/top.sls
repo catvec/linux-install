@@ -413,7 +413,6 @@ arch:
     - secure-boot
     - amdgpu
     - amd-rocm
-    - tmux
     - zfs
     
     # General tools configuration
@@ -453,6 +452,7 @@ arch:
     - uv
     #- shellcheck
     - screen
+    - tmux
     - kubectl
     - kustomize
     - ncdu

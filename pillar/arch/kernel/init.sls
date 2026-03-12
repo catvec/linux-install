@@ -16,3 +16,8 @@ kernel:
 
     hooks: "base systemd autodetect modconf kms keyboard sd-vconsole block sd-encrypt filesystems fsck"
     
+  # Kernel configuration files
+  sysctl_dir: /etc/sysctl.d/
+
+  # Names of config files in salt://sysctl.d/ to sync
+  enabled_sysctl_files: []

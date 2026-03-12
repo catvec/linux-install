@@ -16,3 +16,10 @@ kernel_multipkgs:
 {{ pillar.kernel.vconsole_conf_file }}:
   file.managed:
     - source: salt://kernel/vconsole.conf
+
+{% for file in pillar['kernel']['enabled_sysctl_files'] %}
+{{ pillar.kernel.sysctl_dir }}/{{ file }}:
+  file.managed:
+    - source: salt://kernel/sysctl.d/{{ file }}
+    - template: jinja
+{% endfor %}

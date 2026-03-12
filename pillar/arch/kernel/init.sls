@@ -1,6 +1,8 @@
 kernel:
   # Package which installs Kernel
-  kernel_pkg: linux
+  multipkgs:
+    - linux
+    - linux-headers
 
   # Modprobe directory
   modprobe_dir: /etc/modprobe.d/

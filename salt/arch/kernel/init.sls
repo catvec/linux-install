@@ -1,8 +1,7 @@
 # Install and select kernel
-kernel_pkg:
-  pkg.installed:
-    - pkgs:
-      - {{ pillar.kernel.kernel_pkg }}
+kernel_multipkgs:
+  multipkg.installed:
+    - pkgs: {{ pillar.kernel.multipkgs }}
 
 {{ pillar.kernel.modprobe_dir }}:
   file.recurse:

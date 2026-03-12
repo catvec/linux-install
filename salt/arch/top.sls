@@ -414,6 +414,7 @@ arch:
     - amdgpu
     - amd-rocm
     - tmux
+    - zfs
     
     # General tools configuration
     - gpg

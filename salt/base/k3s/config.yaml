@@ -1,11 +1,20 @@
+# TLS SAN (alternate names on cluster certs)
 {% if pillar.k3s.tls_san %}
 tls-san:
 {% for san in pillar.k3s.tls_san %}
   - "{{ san }}"
 {% endfor %}
 {% endif %}
+
+# Kubeconfig access
 write-kubeconfig-mode: "0644"
 
+# Node IP
 {% if pillar.k3s.node_ip %}
 node-ip: {{ pillar.k3s.node_ip }}
+{% endif %}
+
+# Node labels
+{% if pillar.k3s.node_label %}
+node-label: {{ pillar.k3s.node_label }}
 {% endif %}

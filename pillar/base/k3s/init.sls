@@ -27,3 +27,6 @@ k3s:
 
   # If provided configures which IPs Traefik gateway class binds to
   node_ip: null
+
+  # If provided this label will be added at initial registration time (if node has already joined the cluster use kubectl label instead)
+  node_label: null

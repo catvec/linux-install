@@ -1,0 +1,2 @@
+sourcehut_cli:
+  multipkgs: []

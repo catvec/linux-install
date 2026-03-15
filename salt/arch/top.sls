@@ -510,6 +510,7 @@ arch:
     #- openai-codex
     #- cables
     #- firebase
+    - sourcehut-cli
     
     # User interface configuration
     - vulkan

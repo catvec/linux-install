@@ -9,3 +9,8 @@ opencode:
   mcp:
     brave_search:
       enabled: true
+
+  gotify_hook:
+    enabled: false
+    server_url: http://gotify.bagel.internal
+    app_token: null

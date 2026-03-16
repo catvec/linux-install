@@ -7,6 +7,9 @@
   },
   "plugin": [
     "opencode-plugin-llama.cpp@latest"
+{% if pillar.opencode.gotify_hook.enabled -%}
+    ,"/opt/opencode-plugins/gotify-hook.mjs"
+{%- endif %}
   ],
   "provider": {
     "llama.cpp": {

@@ -350,7 +350,7 @@ arch:
     - avahi
     #- librewolf
     #- chrome
-    #- syncthing
+    - syncthing
     #- blender
     #- emacs
     - doom-emacs

@@ -163,6 +163,7 @@ arch:
     # Applications configuration
     #- links
     - firefox
+    - gotify-client
     - geoclue # (Firefox geolocation)
     - avahi
     - librewolf

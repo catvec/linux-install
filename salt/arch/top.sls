@@ -408,6 +408,7 @@ arch:
     #- tailscale
     #- screenkey
     #- kdenlive
+    - logseq
 
   'benito':
     # Base system configuration

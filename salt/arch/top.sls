@@ -438,6 +438,7 @@ arch:
     - rsync
     - unzip
     - hddtemp
+    - smart-tools
 
     # Development environment configuration
     - ssh

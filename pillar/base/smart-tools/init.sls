@@ -1,0 +1,2 @@
+smart_tools:
+  multipkgs: []

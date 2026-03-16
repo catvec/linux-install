@@ -1,5 +1,5 @@
 gotify_client:
   multipkgs:
-    - gotify-cli
     - aurpkg:
+      - gotify-cli
       - gotify-tray-bin

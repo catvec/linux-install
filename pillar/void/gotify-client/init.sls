@@ -1,3 +1,4 @@
 gotify_client:
   multipkgs:
-    - gotify-cli
+    - xbps:
+      - gotify-cli

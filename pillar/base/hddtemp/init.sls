@@ -1,0 +1,2 @@
+hddtemp:
+  multipkgs: []

@@ -1,0 +1,3 @@
+hddtemp:
+  multipkgs:
+    - pkg: hddtemp

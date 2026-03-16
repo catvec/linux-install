@@ -437,6 +437,7 @@ arch:
     - telnet
     - rsync
     - unzip
+    - hddtemp
 
     # Development environment configuration
     - ssh

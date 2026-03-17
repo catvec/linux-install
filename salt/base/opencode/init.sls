@@ -31,9 +31,9 @@ opencode_pkgs:
     - require:
       - file: /opt/opencode-plugins
 
-/opt/opencode-plugins/gotify-hook.mjs:
+/opt/opencode-plugins/gotify-hook.ts:
   file.managed:
-    - source: salt://opencode/plugins/gotify-hook.mjs
+    - source: salt://opencode/plugins/gotify-hook.ts
     - user: root
     - group: root
     - mode: 644

@@ -1,3 +1,3 @@
 discord:
-  pkgs:
-    - net-im/discord
+  multipkgs:
+    - pkg: net-im/discord

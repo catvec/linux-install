@@ -1,4 +1,4 @@
 # Installs Discord
-discord_pkgs:
-  pkg.installed:
-    - pkgs: {{ pillar.discord.pkgs }}
+discord_multipkgs:
+  multipkg.installed:
+    - pkgs: {{ pillar.discord.multipkgs }}

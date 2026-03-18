@@ -1,2 +1,2 @@
 discord:
-  pkgs: []
+  multipkgs: []

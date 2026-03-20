@@ -144,6 +144,7 @@ arch:
     - pkgfile
     - ncdu
     - modprobed-db
+    - gotify-client
     
     # User interface configuration
     - vulkan

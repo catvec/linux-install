@@ -227,6 +227,7 @@ arch:
     - tailscale
     - screenkey
     - kdenlive
+    - logseq
 
   'marcuse':
     # Base system configuration
